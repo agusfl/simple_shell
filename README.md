@@ -34,7 +34,7 @@ This is a simple implementation of our version of a **shell** for a linux system
 
 
 
-## Authores
+## Authors
 
 * [Agustin Flom](https://github.com/agusfl)
 * [Juan Manuel Reyes](https://github.com/JuanManuelReyes)
