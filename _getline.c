@@ -7,7 +7,7 @@
  *
  *
  **/
-int main (void)
+int _getline (void)
 {
 	char str [100];
 

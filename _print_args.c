@@ -7,7 +7,7 @@
  *     * Return: number of arguments
  *      */
 
-int main(int __attribute__((unused)) argc, char *argv[])
+int _print_args(int __attribute__((unused)) argc, char *argv[])
 {
 	int i;
 	while (argv[i] != NULL)
