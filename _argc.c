@@ -1,11 +1,13 @@
 #include <stdio.h>
 
-int main(int argc, char *argv[])
+int main(int __attribute__((unused)) argc, char *argv[])
 {
 	int i;
-	while (argv[i] != NULL)	
+	while (argv[i] != NULL)
+	{
+		printf("%s\n", argv[i]);
 		i++;
+	}
 
-	printf("%d", i);
 	return (i);
 }
