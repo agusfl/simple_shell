@@ -2,7 +2,11 @@
 
 int main(void)
 {
-	_getline();
+	int i;
+
+	i = spaces();
+
+	printf("spaces: %d\n", i);
 
 	return (0);
 }
