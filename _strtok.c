@@ -28,9 +28,6 @@ int _strtok (void)
 	}
 	printf("====================================================\n"); /*Prueba, despues borrar */
 
-	for (i = 0; i < length; i++)
-		printf("%s\n",array[i]);
-
 	return (0);
 }
 
