@@ -5,7 +5,7 @@
  **/
 int _strtok (void)
 {
-	char *str, token, array[];
+	char *str, token;
 	char separator[2] = " ";
 	int i = 0, length, size;
 
@@ -13,7 +13,7 @@ int _strtok (void)
 
 	size = malloc(spaces() * sizeof(char));
 
-	array[] = array[size];
+	char *array[size];
 
 	length = sizeof(array)/sizeof(array[0]);
 
