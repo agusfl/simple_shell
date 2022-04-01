@@ -5,8 +5,8 @@
  **/
 int main (void)
 {
-	char str[100] = "Numbers: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.";
-	char separator[2] = ",";
+	char str[100] = "Numbers: 1 2 3 4 5 6 7 8 9 10.";
+	char separator[2] = " ";
 	char *token;
 	char *array[500];
 	int i = 0, length;
@@ -22,7 +22,7 @@ int main (void)
 		token = strtok (NULL, separator);
 		i++;
 	}
-	printf("====================================================\n");
+	printf("====================================================\n"); /*Prueba, despues borrar */
 	for (i = 0; i < length; i++)
 	{
 		printf("%s\n",array[i]);
