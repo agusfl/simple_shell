@@ -1,18 +1,25 @@
 #include "main.h"
 
 /**
- *
- *
- *
- *
- *
+ * main - implementation of getline
+ * Return: 0 if succes
  **/
-int _getline (void)
+
+int main(void)
 {
-	char str [100];
+	char *buffer;
+	size_t bufsize = 32;
+
+	buffer = malloc(bufsize * sizeof(char));
+	if (buffer == NULL)
+	{
+		perror("Unable to allocate buffer");
+		exit(0);
+	}
 
 	printf("$ ");
-	scanf ("%s", str);
-	printf("The input was: %s\n", str);
+	getline(&buffer, &bufsize, stdin);
+	printf("%s\n", buffer);
+
 	return (0);
 }
