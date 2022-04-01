@@ -5,7 +5,7 @@
  **/
 int _strtok (void)
 {
-	char *str, token;
+	char *str, *token;
 	char separator[2] = " ";
 	int i = 0, length, size;
 
