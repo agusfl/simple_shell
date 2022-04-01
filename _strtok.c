@@ -2,36 +2,18 @@
 
 /**
  *
- *
- *
- *
- *
  **/
 int _strtok (void)
 {
-	int i, x;
-	char *str;
+	token = strtok(buffer, delimiter);
 
-
-}
-
-/**
- *
- *
- *
- *
- *
- *
- **/
-unsigned int is_delim(char c, char *delim)
-{
-	while(*delim != '\0')
+	while (token != NULL)
 	{
-		if(c == *delim)
-			return 1;
-
-		delim++;
+		toks[counter] = strdup(token);
+		token = strtok(NULL, delimiter);
+		Counter++;
 	}
 
-	return 0;
+	toks[counter] = token;	
 }
+Z
