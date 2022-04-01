@@ -13,7 +13,7 @@ int _strtok (void)
 
 	size = malloc(spaces() * sizeof(char));
 
-	array[size];
+	array[] = array[size];
 
 	length = sizeof(array)/sizeof(array[0]);
 
