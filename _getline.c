@@ -7,7 +7,7 @@
 
 char *_getline(void)
 {
-	char *buffer = NULL, *buffer_copy = NULL;/* Buena practica setear en NULL*/
+	char *buffer = NULL;/* Buena practica setear en NULL*/
 	char *buffer_ret = NULL;
 	size_t bufsize = 1024;/* Cambiar cantidad de espacio */
 
@@ -22,7 +22,8 @@ char *_getline(void)
 	printf("$ ");
 	getline(&buffer, &bufsize, stdin);
 	printf("%s", buffer);
-	buffer_ret = _strcpy(buffer, buffer_copy);
+	printf("Putita Tragona");
+	buffer_ret = _strdup(buffer);
 	free(buffer);
 
 	return (buffer_ret);
