@@ -8,7 +8,7 @@
 int main(void)
 {
 	char *buffer = NULL; /* Buena practica setear en NULL */
-	size_t bufsize = 32; /* Cambiar cantidad de espacio */
+	size_t bufsize = 1024; /* Cambiar cantidad de espacio */
 
 	buffer = malloc(bufsize * sizeof(char));
 	if (buffer == NULL)
