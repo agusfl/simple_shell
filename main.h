@@ -9,6 +9,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+/* Auxiliar functions */
+int _strlen(char *str);
 char* gets(char* strptr);
 
 #endif
