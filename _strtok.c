@@ -3,17 +3,21 @@
 /**
  *
  **/
-int _strtok (void)
+int main (void)
 {
-	token = strtok(buffer, delimiter);
+	char str[100] = "Numbers: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.";
+	char separator[2] = ",";
+	char *token;
+
+	token = strtok(str, separator);
 
 	while (token != NULL)
 	{
-		toks[counter] = strdup(token);
-		token = strtok(NULL, delimiter);
-		Counter++;
+		printf ("%s\n", token);
+		
+		token = strtok (NULL, separator);
 	}
 
-	toks[counter] = token;	
+	return (0);
 }
-Z
+
