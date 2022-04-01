@@ -11,7 +11,7 @@ int _strtok (void)
 
 	str = _getline();
 
-	size = (int)malloc(spaces() * sizeof(char));
+	size = malloc(spaces() * sizeof(char));
 
 	char *array[size];
 
