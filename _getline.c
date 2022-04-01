@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * main - implementation of getline
- * Return: 0 if succes
+ * _getline - implementation for getting a string from the user
+ * Return: buffer --> this is the string to tokenizae with strtok.
  **/
 
-int main(void)
+char *_getline(void)
 {
 	char *buffer = NULL; /* Buena practica setear en NULL */
 	size_t bufsize = 1024; /* Cambiar cantidad de espacio */
@@ -23,5 +23,5 @@ int main(void)
 	printf("%s", buffer);
 	free(buffer);
 
-	return (0);
+	return (buffer);
 }

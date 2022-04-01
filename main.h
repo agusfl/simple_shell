@@ -11,6 +11,8 @@
 
 /* Auxiliar functions */
 int _strlen(char *str);
-char* gets(char* strptr);
+
+/* Implementation functions */
+char *_getline(void);
 
 #endif
