@@ -11,8 +11,11 @@
 
 /* Auxiliar functions */
 int _strlen(char *str);
+char *_strcpy(char *dest, char *src);
 
 /* Implementation functions */
 char *_getline(void);
+int _strtok(void);
+int spaces(void);
 
 #endif
