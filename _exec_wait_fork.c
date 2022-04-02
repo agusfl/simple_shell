@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- *
- *
+ * main - function that uses execve, fork and wait combined
+ * Return: 0 if success
  */
 
-int main (void)
+int main(void)
 {
 	pid_t child;
 	char *argv[] = {"/bin/ls", "-l", "/tmp", NULL};
@@ -23,13 +23,13 @@ int main (void)
 		if (child == 0)
 		{
 			printf("Child process ID: %d\n", getpid());
-		
+
 			if (execve(argv[0], argv, env) == -1)
 			{
 				perror("Could not execute execve");
 			}
 		}
-		else 
+		else
 		{
 			wait(&status);
 			printf("This is the parent process ID: %d\n", getppid());
