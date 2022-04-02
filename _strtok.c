@@ -2,34 +2,33 @@
 
 /**
  *_strtok - function for make tokens of a string
- * Return: a completar
+ * Return: pointer to an array of the string tokens
  **/
-int _strtok(void)
+char **_strtok(void)
 {
 	char *str, *token;
-	char separator[2] = " ";
+	char *separator = " ";
 	int i = 0, size;
 
-	str = _getline();
+	str = "Hola";
+	size = 1;
 
-	size = spaces();
-
-	char *array[size];
+	char **token_array = malloc(sizeof(char *) * size);
 
 	token = strtok(str, separator);
-
 	while (token != NULL)
 	{
 		printf("%s\n", token);
-		array[i] = token;
+		token_array[i] = _strdup(token);
+		if (token_array == NULL)
+		{
+			_free(2, token_array);
+			return (NULL);
+		}
 		token = strtok(NULL, separator);
 		i++;
 	}
-	printf("==============================\n"); /*Prueba, despues borrar */
-	for (i = 0; i < size; i++)
-	{
-		printf("%s\n", array[i]);
-	}
-
-	return (0);
+	token_array[i] = token; /* Token pasa a ser NULL porque salio del while en NULL y se lo asignamos al ultimo
+				   elemento de nuestro array para que termine en NULL */
+	return (token_array);
 }
