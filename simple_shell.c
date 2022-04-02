@@ -5,7 +5,7 @@
  * Return: 0 if success
  */
 
-int main(int __attribute__((unused)) argc, char *argv[])
+int main(int __attribute__((unused)) argc, char **argv)
 {
 	char *buffer = NULL;/* Buena practica setear en NULL*/
 	size_t bufsize = 0;/*Por defecto la funcion getline realoca al tamanio que se necesite*/

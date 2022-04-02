@@ -2,10 +2,10 @@
 
 /**
  * _getline - implementation for getting a string from the user
- * Return: 0 if success
+ * Return: string read
  **/
 
-int _getline(void)
+char *_getline(void)
 {
 	char *buffer = NULL;/* Buena practica setear en NULL*/
 	size_t bufsize = 0;/*Por defecto la funcion getline realoca al tamanio que se necesite*/
