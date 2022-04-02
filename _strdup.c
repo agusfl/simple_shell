@@ -1,10 +1,11 @@
 #include "main.h"
 
 /**
- *_strdup - asd
- *@str: asd
- *Return: asd
+ *_strdup - duplicate a string
+ *@str: string to be copied
+ *Return: NULL if str is NULL or a pointer to the duplicateed string
  **/
+
 char *_strdup(char *str)
 {
 	int i = 0, length = 0;
@@ -27,5 +28,4 @@ char *_strdup(char *str)
 		*(str_copy + i) = *(str + i);
 
 	return (str_copy);
-
 }
