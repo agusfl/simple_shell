@@ -9,7 +9,7 @@ char *_getline(void)
 {
 	char *buffer = NULL;/* Buena practica setear en NULL*/
 	char *buffer_ret = NULL;
-	size_t bufsize = 1024;/* Cambiar cantidad de espacio */
+	size_t bufsize = 0;/*Por defecto la funcion getline realoca al tamanio que se necesite*/
 
 	buffer = malloc(bufsize * sizeof(char));
 	if (buffer == NULL)
@@ -22,7 +22,6 @@ char *_getline(void)
 	printf("$ ");
 	getline(&buffer, &bufsize, stdin);
 	printf("%s", buffer);
-	printf("Putita Tragona");
 	buffer_ret = _strdup(buffer);
 	free(buffer);
 
