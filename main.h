@@ -18,7 +18,7 @@ char *_strdup(char *str);
 void _free(int n, ...);
 
 /* Implementation functions */
-char *_getline(void);
+int _getline(void);
 char **_strtok(void);
 int spaces(void);
 
