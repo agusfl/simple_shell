@@ -1,10 +1,5 @@
 #include "main.h"
 
-/**
- * _getline - implementation for getting a string from the user
- * Return: string read
- **/
-
 int main(int argc, char *argv[])
 {
     char *line;
@@ -19,13 +14,15 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-char *_getLine(char **line) {
+char _getLine(char **line) {
     unsigned int lengthAdder = 1, counter = 0, size = 0;
     char charRead = 0;
 
     *line = malloc(lengthAdder);
+    printf("1");
     while((charRead = getc(stdin)) != EOF && charRead != '\n')
     {
+	printf("2");
         *line[counter++] = charRead;
         *line = realloc(*line, counter);
     }
