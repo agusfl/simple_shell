@@ -5,14 +5,12 @@
  * Return: string read
  **/
 
-char __getline(char **line);
-
 int main(int argc, char *argv[])
 {
     char *line;
     char *returnVal = 0;
 
-    returnVal = _getline(&line);
+    returnVal = _getLine(&line);
     printf("%s", line);
 
     free(line);
@@ -21,7 +19,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-char * _getline(char **line) {
+char *_getLine(char **line) {
     unsigned int lengthAdder = 1, counter = 0, size = 0;
     char *charRead = 0;
     char *buffer = NULL;

@@ -19,6 +19,7 @@ void _free(int n, ...);
 
 /* Implementation functions */
 int _getline(void);
+char *_getLine(char **line);
 char **_strtok(void);
 int spaces(void);
 
