@@ -8,7 +8,7 @@
 int main(int argc, char *argv[])
 {
     char *line;
-    char *returnVal = 0;
+    char returnVal = 0;
 
     returnVal = _getLine(&line);
     printf("%s", line);
@@ -21,15 +21,10 @@ int main(int argc, char *argv[])
 
 char *_getLine(char **line) {
     unsigned int lengthAdder = 1, counter = 0, size = 0;
-    char *charRead = 0;
-    char *buffer = NULL;
-    size_t bufsize = 1024;
-
-    buffer = malloc(bufsize * sizeof(char));
+    char charRead = 0;
 
     *line = malloc(lengthAdder);
-    charRead = gets(buffer);
-    while(charRead != NULL) /*Seg Fault Here*/
+    while((charRead = getc(stdin)) != EOF && charRead != '\n')
     {
         *line[counter++] = charRead;
         *line = realloc(*line, counter);
