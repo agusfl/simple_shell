@@ -5,23 +5,34 @@
  * Return: string read
  **/
 
-char *_getline(void)
+char __getline(char **line);
+
+int main(int argc, char *argv[])
 {
-	char *buffer = NULL;/* Buena practica setear en NULL*/
-	size_t bufsize = 0;/*Por defecto la funcion getline realoca al tamanio que se necesite*/
+    char *line;
+    char returnVal = 0;
 
-	buffer = malloc(bufsize * sizeof(char));
-	if (buffer == NULL)
-	{
-		perror("Unable to allocate buffer"); /*Print message error */
-		free(buffer); /*free buffer in case it fails malloc */
-		exit(0); /*exit function in case of error */
-	}
+    returnVal = _getline(&line);
+    printf("%s", line);
 
-	printf("$ ");
-	getline(&buffer, &bufsize, stdin);
-	printf("%s", buffer);
-	free(buffer);
+    free(line);
 
-	return (0);
+    system("pause");
+    return 0;
+}
+
+char * _getline(char **line) {
+    unsigned int lengthAdder = 1, counter = 0, size = 0;
+    char *charRead = 0;
+
+    *line = malloc(lengthAdder);
+    while((charRead = gets(stdin)) != EOF && charRead != NULL) /*Seg Fault Here*/
+    {
+        *line[counter++] = charRead;
+        *line = realloc(*line, counter);
+    }
+
+    *line[counter] = '\0';
+
+    return charRead;
 }

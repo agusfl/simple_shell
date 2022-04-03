@@ -22,7 +22,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 	printf("%s", buffer);
 
 	pid_t child;
-	char *argV[] = {buffer, NULL};
+	char *argV[] = {"ls", NULL};
 	char *env[] = {NULL};
 	int status, child_count = 0;
 
