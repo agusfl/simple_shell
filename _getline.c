@@ -8,7 +8,9 @@
 int _getline(void)
 {
 	char *buffer = NULL;/* Buena practica setear en NULL*/
-	size_t bufsize = 0;/*Por defecto la funcion getline realoca al tamanio que se necesite*/
+	size_t bufsize = 1024;
+	/* Por defecto la funcion getline realoca al tamanio que se necesite
+	 * le ponemos un tamanio porque sino quedaban memory leaks.*/
 
 	buffer = malloc(bufsize * sizeof(char));
 	printf("$ ");
