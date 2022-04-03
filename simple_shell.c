@@ -8,7 +8,7 @@
 int main(int __attribute__((unused)) argc, char **argv)
 {
 	char *buffer = NULL;/* Buena practica setear en NULL*/
-	size_t bufsize = 0;/*Por defecto la funcion getline realoca al tamanio que se necesite*/
+	size_t bufsize = 1024;/*Por defecto la funcion getline realoca al tamanio que se necesite*/
 
 	buffer = malloc(bufsize * sizeof(char));
 	if (buffer == NULL)
@@ -22,7 +22,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 	printf("%s", buffer);
 
 	pid_t child;
-	char *argV[] = {"ls", NULL};
+	char *argV[] = {buffer, NULL};
 	char *env[] = {NULL};
 	int status, child_count = 0;
 
