@@ -74,7 +74,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 
 	/*shell*/
 	pid_t child;
-	char *argV[] = {token_array[i], NULL};
+
 	char *env[] = {NULL};
 	int status, child_count = 0;
 
@@ -90,7 +90,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 		{
 			printf("Child process ID: %d\n", getpid());
 
-			if (execve(argV[0], argV, env) == -1)
+			if (execve(token_array[0], token_array, env) == -1)
 			{
 				perror("Could not execute execve");
 			}
