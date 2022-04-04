@@ -46,6 +46,8 @@ int main(int __attribute__((unused)) argc, char **argv)
 			wait(&status);
 		}
 		free(str);
+		free(array);
+		
 	}
 	return (0);
 }
@@ -111,7 +113,7 @@ char **_strtok(char *str, int size)
 	size = spaces(str);
 	token_array = malloc(sizeof(char *) * size);
 
-	token = strtok(str, "\n");
+	token = strtok(str, "\n"); /*Tokenize with \n to remove it from the string*/
 	token = strtok(str, separator);
 
 	while (token != NULL)
