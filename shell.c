@@ -13,7 +13,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 	char **array = NULL;
 	int space = 0;
 
-	while (1)
+	while (1) /* infinite while --> kill with exit */
 	{
 		/*signal(SIGINT, SIG_IGN); -> para usar cuando tengamos exit*/
 		printf("$ ");
