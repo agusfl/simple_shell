@@ -57,7 +57,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 char *_getline(void)
 {
 	char *buffer = NULL;
-	size_t bufsize = 1024;
+	size_t bufsize = 0;
 	buffer = malloc(bufsize * sizeof(char));
 	if (buffer == NULL)
 	{
