@@ -8,13 +8,15 @@ int main(int __attribute__((unused)) argc, char **argv)
 {
 	char *str = NULL;
 	int space = 0;
+	char **array = _strtok(str, space);
 
 
 	while (1)
 	{
+		printf("$ ");
+
 		str = _getline();
 		space = spaces(str);
-		_strtok(str, space);
 		
 		pid_t child;
 		char *env[] = {NULL};
@@ -30,7 +32,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 			}
 			if (child == 0) /*if it is 0 means that is the child process */
 			{
-				if (execve(token_array[0], token_array, env) == -1)
+				if (execve(array[0], array, env) == -1)
 				{
 					perror("Could not execute execve");
 				}
@@ -42,10 +44,9 @@ int main(int __attribute__((unused)) argc, char **argv)
 		child_count++;
 		}
 		free(str);
-		}
-		return (0);
-
-		}
+	}
+	return (0);
+		
 }
 
 /**
@@ -57,9 +58,7 @@ char *_getline(void)
 {
 	char *buffer = NULL;
 	size_t bufsize = 1024;
-
 	buffer = malloc(bufsize * sizeof(char));
-	printf("$ ");
 	getline(&buffer, &bufsize, stdin);
 
 	return (buffer);
@@ -70,9 +69,8 @@ char *_getline(void)
  * Return: number of spaces plus 1 for the null byte of the last word
  */
 
-int spaces(char *)
+int spaces(char *str)
 {
-	char *str;
 	int space = 0, i = 0;
 
 	str = _getline();
@@ -94,14 +92,14 @@ int spaces(char *)
  *_strtok - function for make tokens of a string
  * Return: pointer to an array of the string tokens
  **/
-char **_strtok(char *, int)
+char **_strtok(char *str, int size)
 {
-	char *str, *token;
+	char *token;
 	char *separator = " ";
-	int i = 0, size;
+	int i = 0;
 
 	str = _getline();
-	size = spaces();
+	size = spaces(str);
 
 	char **token_array = malloc(sizeof(char *) * size);
 
@@ -109,7 +107,7 @@ char **_strtok(char *, int)
 	while (token != NULL)
 	{
 		printf("%s\n", token);
-		token_array[i] = _strdup(token);
+		token_array[i] = token;
 		if (token_array == NULL)
 		{
 			_free(2, token_array);
