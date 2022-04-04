@@ -54,7 +54,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 
         while (token != NULL)
         {
-                token_array[i] = _strdup(token);
+                token_array[i] = token;
                 if (token_array == NULL)
                 {
                         _free(2, token_array);
