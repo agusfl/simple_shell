@@ -2,8 +2,11 @@
 
 /**
  * main - simple shell
+ * @argc: argument counter
+ * @argv: argument vector of strings
  * Return: 0 if success
  */
+
 int main(int __attribute__((unused)) argc, char **argv)
 {
 	char *str = NULL;
@@ -12,7 +15,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 
 	while (1)
 	{
-		/*signal(SIGINT, SIG_IGN);*/
+		/*signal(SIGINT, SIG_IGN); -> para usar cuando tengamos exit*/
 		printf("$ ");
 		str = _getline();
 		space = spaces(str);
@@ -20,37 +23,35 @@ int main(int __attribute__((unused)) argc, char **argv)
 
 		if (str[0] == '\n')
 			continue;
-		
+
 		pid_t child;
 		char *env[] = {NULL};
 		int status;
 
-			child = fork();
-			if (child == -1)
+		child = fork();
+		if (child == -1)
+		{
+			perror("Error while creating a child process");
+			exit(1);
+		}
+		if (child == 0) /*if it is 0 means that is the child process */
+		{
+			if (execve(array[0], array, env) == -1)
 			{
-				perror("Error while creating a child process");
-				exit(1);
+				perror("Could not execute execve");
 			}
-			if (child == 0) /*if it is 0 means that is the child process */
-			{
-				if (execve(array[0], array, env) == -1)
-				{
-					perror("Could not execute execve");
-				}
-			}
-			else
-			{
-				wait(&status);
-			}
-	
+		}
+		else
+		{
+			wait(&status);
+		}
 		free(str);
 	}
 	return (0);
-		
 }
 
 /**
- * _getline - implementation for getting a string from the user
+ * _getline - implementation of getline() for getting a string from the user
  * Return: 0 if success
  **/
 
@@ -58,6 +59,7 @@ char *_getline(void)
 {
 	char *buffer = NULL;
 	size_t bufsize = 0;
+
 	buffer = malloc(bufsize * sizeof(char));
 	if (buffer == NULL)
 	{
@@ -65,14 +67,14 @@ char *_getline(void)
 		free(buffer);
 		exit(0);
 	}
-
 	getline(&buffer, &bufsize, stdin);
 
 	return (buffer);
 }
 
 /**
- * spaces - function to get spaces of a string
+ * spaces - function to get the number of spaces of a string.
+ * @str: string to count spaces
  * Return: number of spaces plus 1 for the null byte of the last word
  */
 
@@ -94,9 +96,12 @@ int spaces(char *str)
 }
 
 /**
- *_strtok - function for make tokens of a string
+ * _strtok - function for make tokens from a string
+ * @str: string to be tokenaized
+ * @size: spaces to tokenaized in the string
  * Return: pointer to an array of the string tokens
  **/
+
 char **_strtok(char *str, int size)
 {
 	char *token, *separator = " ";
@@ -104,9 +109,8 @@ char **_strtok(char *str, int size)
 	int i = 0;
 
 	size = spaces(str);
-
 	token_array = malloc(sizeof(char *) * size);
-	
+
 	token = strtok(str, "\n");
 	token = strtok(str, separator);
 
