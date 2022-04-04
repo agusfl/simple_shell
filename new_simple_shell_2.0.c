@@ -12,6 +12,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 
 	while (1)
 	{
+		/*signal(SIGINT, SIG_IGN);*/
 		printf("$ ");
 		str = _getline();
 		space = spaces(str);
