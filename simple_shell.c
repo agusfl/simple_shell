@@ -7,6 +7,8 @@
 
 int main(int __attribute__((unused)) argc, char **argv)
 {
+	while (1)
+	{
 	/*getline*/
 	char *buffer = NULL;/* Buena practica setear en NULL*/
 	size_t bufsize = 1024;/*Por defecto la funcion getline realoca al tamanio que se necesite*/
@@ -20,6 +22,8 @@ int main(int __attribute__((unused)) argc, char **argv)
 	}
 	printf("$ ");
 	getline(&buffer, &bufsize, stdin);
+	if (buffer[0] == '\n')
+		continue;
 
 	/*Spaces*/
 
@@ -94,5 +98,6 @@ int main(int __attribute__((unused)) argc, char **argv)
 	child_count++;
 	}
 	free(buffer);
+	}
 	return (0);
 }
