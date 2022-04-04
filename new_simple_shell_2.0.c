@@ -6,7 +6,7 @@
  */
 int main(int __attribute__((unused)) argc, char **argv)
 {
-
+	
 }
 
 /**
@@ -16,18 +16,14 @@ int main(int __attribute__((unused)) argc, char **argv)
 
 int _getline(void)
 {
-	char *buffer = NULL;/* Buena practica setear en NULL*/
+	char *buffer = NULL;
 	size_t bufsize = 1024;
-	/* Por defecto la funcion getline realoca al tamanio que se necesite
-	 * le ponemos un tamanio porque sino quedaban memory leaks.*/
 
 	buffer = malloc(bufsize * sizeof(char));
 	printf("$ ");
 	getline(&buffer, &bufsize, stdin);
-	printf("%s", buffer);
-	free(buffer);
 
-	return (0);
+	return (buffer);
 }
 
 /**
@@ -51,6 +47,7 @@ int spaces(void)
 		i++;
 	}
 	space++;
+
 	return (space);
 }
 
@@ -64,8 +61,8 @@ char **_strtok(void)
 	char *separator = " ";
 	int i = 0, size;
 
-	str = "Hola";
-	size = 1;
+	str = _getline();
+	size = spaces();
 
 	char **token_array = malloc(sizeof(char *) * size);
 
@@ -82,7 +79,46 @@ char **_strtok(void)
 		token = strtok(NULL, separator);
 		i++;
 	}
-	token_array[i] = token; /* Token pasa a ser NULL porque salio del while en NULL y se lo asignamos al ultimo
-				   elemento de nuestro array para que termine en NULL */
+	token_array[i] = token;
+
 	return (token_array);
+}
+
+/**
+ * _free - function to free 1 pointer or a double pointer
+ * @n: indicates if it is a 1 pointer to be freed or a double pointer
+ **/
+
+void _free(int n, ...)
+{
+	char *ptr;
+	char **dptr;
+	va_list valist;
+	int i;
+
+	va_start(valist, n);
+
+	if (n == 1)
+	{
+		ptr = va_arg(valist, char *);
+		if (ptr == NULL)
+		{
+			return;
+		}
+		free(ptr);
+	}
+	if (n == 2)
+	{
+		dptr = va_arg(valist, char **);
+		if (dptr == NULL)
+		{
+			return;
+		}
+		for (i = 0; dptr[i] != NULL; i++)
+		{
+			free(dptr);
+		}
+		free(dptr);
+	}
+	va_end(valist);
 }
