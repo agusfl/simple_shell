@@ -7,23 +7,23 @@
 int main(int __attribute__((unused)) argc, char **argv)
 {
 	char *str = NULL;
+	char **array = NULL;
 	int space = 0;
-	char **array = _strtok(str, space);
-
 
 	while (1)
 	{
 		printf("$ ");
-
 		str = _getline();
 		space = spaces(str);
+		array = _strtok(str, space);
+
+		if (str[0] == '\n')
+			continue;
 		
 		pid_t child;
 		char *env[] = {NULL};
-		int status, child_count = 0;
+		int status;
 
-		while (child_count < 1)
-		{
 			child = fork();
 			if (child == -1)
 			{
@@ -41,8 +41,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 			{
 				wait(&status);
 			}
-		child_count++;
-		}
+	
 		free(str);
 	}
 	return (0);
@@ -59,6 +58,13 @@ char *_getline(void)
 	char *buffer = NULL;
 	size_t bufsize = 1024;
 	buffer = malloc(bufsize * sizeof(char));
+	if (buffer == NULL)
+	{
+		perror("Unable to allocate buffer ");
+		free(buffer);
+		exit(0);
+	}
+
 	getline(&buffer, &bufsize, stdin);
 
 	return (buffer);
@@ -72,8 +78,6 @@ char *_getline(void)
 int spaces(char *str)
 {
 	int space = 0, i = 0;
-
-	str = _getline();
 
 	while (str[i] != '\0')
 	{
@@ -94,19 +98,19 @@ int spaces(char *str)
  **/
 char **_strtok(char *str, int size)
 {
-	char *token;
-	char *separator = " ";
+	char *token, *separator = " ";
+	char **token_array;
 	int i = 0;
 
-	str = _getline();
 	size = spaces(str);
 
-	char **token_array = malloc(sizeof(char *) * size);
-
+	token_array = malloc(sizeof(char *) * size);
+	
+	token = strtok(str, "\n");
 	token = strtok(str, separator);
+
 	while (token != NULL)
 	{
-		printf("%s\n", token);
 		token_array[i] = token;
 		if (token_array == NULL)
 		{
