@@ -46,7 +46,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 			wait(&status);
 		}
 		_free(1, str);
-		_free(1, array);
+		_free(2, array);
 	}
 	return (0);
 }
