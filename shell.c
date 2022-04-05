@@ -24,6 +24,12 @@ int main(int __attribute__((unused)) argc, char **argv)
 			_free(1, str);
 			continue;
 		}
+		array = _strtok(str, space);
+		if (str[0] == 'e'&&'x'&&'i'&&'t')
+                {
+			_free(1, str), _free(1, array);
+                        exit(1);
+		}
 		pid_t child;
 		char *env[] = {NULL};
 		int status;
@@ -34,7 +40,6 @@ int main(int __attribute__((unused)) argc, char **argv)
 			perror("Error while creating a child process");
 			exit(1);
 		}
-		array = _strtok(str, space);
 		if (child == 0) /*if it is 0 means that is the child process */
 		{
 			if (execve(array[0], array, env) == -1)
