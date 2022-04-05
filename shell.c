@@ -13,7 +13,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 	char **array = NULL;
 	int space = 0;
 
-	while (1) /* infinite while --> kill with exit */
+	while (1) /* infinite while --> kill with exit or ctrl + d */
 	{
 		signal(SIGINT, SIG_IGN); /*-> para usar cuando tengamos exit*/
 		printf("$ ");
@@ -39,26 +39,20 @@ int main(int __attribute__((unused)) argc, char **argv)
 			{
 				if (execve(array[0], array, env) == -1)
 				{
-					_free(1, str), _free(2, array);
 					perror("Could not execute execve");
 					return (0);
 				}
 				else if (EOF == 1) /*ctrl d*/
 				{
-					_free(1, str), _free(2, array);
 					return (0);
 				}
 			}
 			else /* parent process */
-			{
 				wait(&status);
-			}
-			_free(1, str);
+
 		}
-		str = NULL;
-		_free(1, str), _free(2, array);
+		_free(1, str),_free(1, array);
 	}
-	_free(1, str);
 	return (0);
 }
 
