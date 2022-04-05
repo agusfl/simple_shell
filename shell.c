@@ -9,8 +9,7 @@
 
 int main(int __attribute__((unused)) argc, char **argv)
 {
-	char *str = NULL;
-	char **array = NULL;
+	char *str = NULL, **array = NULL;
 	int space = 0;
 
 	while (1) /* infinite while --> kill with exit or ctrl + d */
@@ -21,7 +20,10 @@ int main(int __attribute__((unused)) argc, char **argv)
 		space = spaces(str);
 
 		if (str[0] == '\n')
+		{
+			_free(1, str);
 			continue;
+		}
 		pid_t child;
 		char *env[] = {NULL};
 		int status;
@@ -59,7 +61,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 char *_getline(void)
 {
 	char *buffer = NULL;
-	size_t bufsize = 100;
+	size_t bufsize = 100; /* if we set the value on 0 there are leaks */
 
 	buffer = malloc(bufsize * sizeof(char));
 	if (buffer == NULL)
