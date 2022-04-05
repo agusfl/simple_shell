@@ -115,7 +115,7 @@ char **_strtok(char *str, int size)
 	int i = 0;
 
 	size = spaces(str);
-	token_array = calloc(size, sizeof(char *));
+	token_array = _calloc(size, sizeof(char *));
 
 	token = strtok(str, "\n"); /*Tokenize with \n to remove it from the string*/
 	token = strtok(str, separator);
