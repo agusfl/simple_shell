@@ -15,7 +15,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 
 	while (1) /* infinite while --> kill with exit */
 	{
-		/*signal(SIGINT, SIG_IGN); -> para usar cuando tengamos exit*/
+		signal(SIGINT, SIG_IGN); /*-> para usar cuando tengamos exit*/
 		printf("$ ");
 		str = _getline();
 		space = spaces(str);
