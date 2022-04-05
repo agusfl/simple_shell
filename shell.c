@@ -14,7 +14,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 
 	while (1) /* infinite while --> kill with exit or ctrl + d */
 	{
-		signal(SIGINT, _ctrl_c); /*ctrl c - agregar salto de linea*/
+		signal(SIGINT, _ctrl_c); /*ctrl c - ignore and make a break line*/
 		printf("$ ");
 		str = _getline();
 		space = spaces(str);

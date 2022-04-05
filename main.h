@@ -22,6 +22,6 @@ void *_calloc(unsigned int nmemb, unsigned int size);
 char *_getline(void);
 char **_strtok(char *str, int size);
 int spaces(char *string);
-void _ctrl_c(int signal);
+void _ctrl_c(int sig);
 
 #endif
