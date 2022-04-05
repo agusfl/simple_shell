@@ -64,7 +64,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 char *_getline(void)
 {
 	char *buffer = NULL;
-	size_t bufsize = 0;
+	size_t bufsize = 100;
 
 	buffer = malloc(bufsize * sizeof(char));
 	if (buffer == NULL)
@@ -136,7 +136,7 @@ char **_strtok(char *str, int size)
 		token = strtok(NULL, separator);
 		i++;
 	}
-	token_array[i] = NULL;
+	/*token_array[i] = NULL;*/
 
 	return (token_array);
 }
