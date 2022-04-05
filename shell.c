@@ -150,7 +150,8 @@ void _free(int n, ...)
 		ptr = va_arg(valist, char *);
 		if (ptr == NULL)
 		{
-			return;
+		
+	return;
 		}
 		free(ptr);
 	}
