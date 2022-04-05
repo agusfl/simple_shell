@@ -39,13 +39,13 @@ int main(int __attribute__((unused)) argc, char **argv)
 			{
 				if (execve(array[0], array, env) == -1)
 				{
-					free(str), free(array);
+					_free(1, str), _free(2, array);
 					perror("Could not execute execve");
 					return (0);
 				}
 				else if (EOF == 1) /*ctrl d*/
 				{
-					free(str), free(array);
+					_free(1, str), _free(2, array);
 					return (0);
 				}
 			}
@@ -53,12 +53,12 @@ int main(int __attribute__((unused)) argc, char **argv)
 			{
 				wait(&status);
 			}
-			free(str);
+			_free(1, str);
 		}
 		str = NULL;
-		free(str), free(array);
+		_free(1, str), _free(2, array);
 	}
-	free(str);
+	_free(1, str);
 	return (0);
 }
 
@@ -76,13 +76,13 @@ char *_getline(void)
 	if (buffer == NULL)
 	{
 		perror("Unable to allocate buffer ");
-		free(buffer);
+		_free(1, buffer);
 		exit(1);
 	}
 	if (getline(&buffer, &bufsize, stdin) == -1)
 	{
 		perror("Error in getline");
-		free(buffer);
+		_free(1, buffer);
 		exit(1);
 	}
 
@@ -136,7 +136,7 @@ char **_strtok(char *str, int size)
 		token_array[i] = token;
 		if (token_array == NULL)
 		{
-			free(token_array);
+			_free(2, token_array);
 			return (NULL);
 		}
 		token = strtok(NULL, separator);
