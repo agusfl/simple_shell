@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  *
  *
@@ -6,8 +7,8 @@
  *
  *
  **/
-void _ctrl_C(int signal)
+void _ctrl_c(int signal)
 {
 	if (signal == SIGINT)
-		write (1,"\n",1);
+		write (1,"\n$ ",3);
 }
