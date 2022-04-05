@@ -19,11 +19,9 @@ int main(int __attribute__((unused)) argc, char **argv)
 		printf("$ ");
 		str = _getline();
 		space = spaces(str);
-		array = _strtok(str, space);
 
 		if (str[0] == '\n')
 			continue;
-
 		pid_t child;
 		char *env[] = {NULL};
 		int status;
@@ -34,20 +32,33 @@ int main(int __attribute__((unused)) argc, char **argv)
 			perror("Error while creating a child process");
 			exit(1);
 		}
-		if (child == 0) /*if it is 0 means that is the child process */
-		{
-			if (execve(array[0], array, env) == -1)
-			{
-				perror("Could not execute execve");
-			}
-		}
 		else
 		{
-			wait(&status);
+			array = _strtok(str, space);
+			if (child == 0) /*if it is 0 means that is the child process */
+			{
+				if (execve(array[0], array, env) == -1)
+				{
+					free(str), free(array);
+					perror("Could not execute execve");
+					return (0);
+				}
+				else if (EOF == 1) /*ctrl d*/
+				{
+					free(str), free(array);
+					return (0);
+				}
+			}
+			else /* parent process */
+			{
+				wait(&status);
+			}
+			free(str);
 		}
-		_free(1, str);
-		_free(2, array);
+		str = NULL;
+		free(str), free(array);
 	}
+	free(str);
 	return (0);
 }
 
@@ -66,9 +77,14 @@ char *_getline(void)
 	{
 		perror("Unable to allocate buffer ");
 		free(buffer);
-		exit(0);
+		exit(1);
 	}
-	getline(&buffer, &bufsize, stdin);
+	if (getline(&buffer, &bufsize, stdin) == -1)
+	{
+		perror("Error in getline");
+		free(buffer);
+		exit(1);
+	}
 
 	return (buffer);
 }
@@ -110,7 +126,7 @@ char **_strtok(char *str, int size)
 	int i = 0;
 
 	size = spaces(str);
-	token_array = malloc(sizeof(char *) * size);
+	token_array = calloc(size, sizeof(char *));
 
 	token = strtok(str, "\n"); /*Tokenize with \n to remove it from the string*/
 	token = strtok(str, separator);
@@ -120,13 +136,13 @@ char **_strtok(char *str, int size)
 		token_array[i] = token;
 		if (token_array == NULL)
 		{
-			_free(2, token_array);
+			free(token_array);
 			return (NULL);
 		}
 		token = strtok(NULL, separator);
 		i++;
 	}
-	token_array[i] = token;
+	token_array[i] = NULL;
 
 	return (token_array);
 }
