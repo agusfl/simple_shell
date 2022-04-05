@@ -1,11 +1,12 @@
 #include "main.h"
 
 /**
- *_calloc - asd
- *@size: asd
- *@nmemb: asd
- *Return: asd
+ *_calloc - allocates memory for an array
+ *@nmemb: number of elements of the array
+ *@size: size in bytes of the array
+ *Return: pointer to the array or NULL if it fails
  **/
+
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
 	void *mem_space;

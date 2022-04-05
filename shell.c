@@ -90,7 +90,7 @@ int spaces(char *str)
 
 	while (str[i] != '\0')
 	{
-		if (str[i] == 32)
+		if (str[i] == 32) /*number representation of space character in ASCII */
 		{
 			space++;
 		}
