@@ -24,6 +24,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 			_free(1, str);
 			continue;
 		}
+		array = _strtok(str, space);
 		pid_t child;
 		char *env[] = {NULL};
 		int status;
@@ -34,7 +35,6 @@ int main(int __attribute__((unused)) argc, char **argv)
 			perror("Error while creating a child process");
 			exit(1);
 		}
-		array = _strtok(str, space);
 		if (child == 0) /*if it is 0 means that is the child process */
 		{
 			if (execve(array[0], array, env) == -1)
@@ -46,7 +46,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 			else if (EOF == 1) /*ctrl d*/
 				return (0);
 		}
-		else /* parent process */
+		else /* parent process - waits for the child process to finish */
 			wait(&status);
 		_free(1, str), _free(1, array);
 	}
@@ -112,7 +112,7 @@ int spaces(char *str)
 
 char **_strtok(char *str, int size)
 {
-	char *token, *separator = " ";
+	char *token, *separator = " ", *exitt = "exit";
 	char **token_array;
 	int i = 0;
 
@@ -125,9 +125,14 @@ char **_strtok(char *str, int size)
 	while (token != NULL)
 	{
 		token_array[i] = token;
+		if (strcmp(token, exitt) == 0)/*If input is "exit" free memory andExitShell*/
+		{
+			_free(1, str), _free(1, token_array);
+			exit(1);
+		}
 		if (token_array == NULL)
 		{
-			_free(2, token_array);
+			_free(1, token_array);
 			return (NULL);
 		}
 		token = strtok(NULL, separator);
