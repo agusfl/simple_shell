@@ -101,7 +101,7 @@ int spaces(char *str)
 		}
 		i++;
 	}
-	space++;
+	space += 2;
 
 	return (space);
 }
@@ -136,7 +136,7 @@ char **_strtok(char *str, int size)
 		token = strtok(NULL, separator);
 		i++;
 	}
-	/*token_array[i] = NULL;*/
+	token_array[i] = NULL;
 
 	return (token_array);
 }
