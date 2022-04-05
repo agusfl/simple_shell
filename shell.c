@@ -32,26 +32,21 @@ int main(int __attribute__((unused)) argc, char **argv)
 			perror("Error while creating a child process");
 			exit(1);
 		}
-		else
+		array = _strtok(str, space);
+		if (child == 0) /*if it is 0 means that is the child process */
 		{
-			array = _strtok(str, space);
-			if (child == 0) /*if it is 0 means that is the child process */
+			if (execve(array[0], array, env) == -1)
 			{
-				if (execve(array[0], array, env) == -1)
-				{
-					perror("Could not execute execve");
-					return (0);
-				}
-				else if (EOF == 1) /*ctrl d*/
-				{
-					return (0);
-				}
+				perror("Could not execute execve");
+				return (0);
 			}
-			else /* parent process */
-				wait(&status);
-
+			else if (EOF == 1) /*ctrl d*/
+				return (0);
 		}
-		_free(1, str),_free(1, array);
+		else /* parent process */
+			wait(&status);
+
+		_free(1, str), _free(1, array);
 	}
 	return (0);
 }
@@ -101,7 +96,7 @@ int spaces(char *str)
 		}
 		i++;
 	}
-	space += 2;
+	space += 2;/*added space for a new word and the NULL element of array*/
 
 	return (space);
 }
@@ -160,8 +155,7 @@ void _free(int n, ...)
 		ptr = va_arg(valist, char *);
 		if (ptr == NULL)
 		{
-		
-	return;
+			return;
 		}
 		free(ptr);
 	}
