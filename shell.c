@@ -46,7 +46,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 			else if (EOF == 1) /*ctrl d*/
 				return (0);
 		}
-		else /* parent process */
+		else /* parent process - waits for the child process to finish */
 			wait(&status);
 		_free(1, str), _free(1, array);
 	}
@@ -125,7 +125,7 @@ char **_strtok(char *str, int size)
 	while (token != NULL)
 	{
 		token_array[i] = token;
-		if (strcmp(token, exitt) == 0)
+		if (strcmp(token, exitt) == 0)/*If input is "exit" free memory andExitShell*/
 		{
 			_free(1, str), _free(1, token_array);
 			exit(1);
