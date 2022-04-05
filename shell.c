@@ -15,7 +15,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 
 	while (1) /* infinite while --> kill with exit or ctrl + d */
 	{
-		signal(SIGINT, SIG_IGN); /*-> para usar cuando tengamos exit*/
+		signal(SIGINT, SIG_IGN); /*ctrl c - agregar salto de linea*/
 		printf("$ ");
 		str = _getline();
 		space = spaces(str);
@@ -38,6 +38,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 			if (execve(array[0], array, env) == -1)
 			{
 				perror("Could not execute execve");
+				_free(1, str), _free(1, array);/*In case of error free allocated memory*/
 				return (0);
 			}
 			else if (EOF == 1) /*ctrl d*/
@@ -45,7 +46,6 @@ int main(int __attribute__((unused)) argc, char **argv)
 		}
 		else /* parent process */
 			wait(&status);
-
 		_free(1, str), _free(1, array);
 	}
 	return (0);
