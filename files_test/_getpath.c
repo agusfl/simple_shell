@@ -15,9 +15,9 @@ char *_getpath()
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		if (strcomparer(environ[i], "PATH") == 0)
+		if (_strcmp(environ[i], "PATH") == 0)
 		{
-			path = malloc(sizeof(char *) * (strlarge(environ[i])));
+			path = malloc(sizeof(char *) * (_strlen(environ[i])));
 			if (path == NULL)
 			{
 				freedom(1, path);
@@ -29,3 +29,5 @@ char *_getpath()
 	}
 	return (path);
 }
+
+
