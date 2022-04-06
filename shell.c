@@ -16,6 +16,8 @@ int main(int __attribute__((unused)) argc, char **argv)
 	{
 		signal(SIGINT, _ctrl_c); /*ctrl c - ignore and make a break line*/
 		printf("$ ");
+		/*if (EOF == 1)
+			exit(4);*/
 		str = _getline();
 		space = spaces(str);
 
@@ -33,7 +35,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 		if (child == -1)
 		{
 			perror("Error while creating a child process");
-			exit(1);
+			exit(4);
 		}
 		if (child == 0) /*if it is 0 means that is the child process */
 		{
@@ -43,8 +45,6 @@ int main(int __attribute__((unused)) argc, char **argv)
 				_free(1, str), _free(1, array);/*In case of error free allocated memory*/
 				return (0);
 			}
-			else if (EOF == 1) /*ctrl d*/
-				return (0);
 		}
 		else /* parent process - waits for the child process to finish */
 			wait(&status);
@@ -68,13 +68,13 @@ char *_getline(void)
 	{
 		perror("Unable to allocate buffer ");
 		_free(1, buffer);
-		exit(1);
+		exit(4);
 	}
 	if (getline(&buffer, &bufsize, stdin) == -1)
 	{
 		perror("Error in getline");
 		_free(1, buffer);
-		exit(1);
+		exit(4);
 	}
 
 	return (buffer);
