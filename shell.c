@@ -130,7 +130,7 @@ char **_strtok(char *str, int size)
 	while (token != NULL)
 	{
 		token_array[i] = token;
-		if (strcmp(token, exitt) == 0)/*If input is "exit" free memory andExitShell*/
+		if (_strcmp(token, exitt) == 0)/*If input is "exit" free memory andExitShell*/
 		{
 			_free(1, str), _free(1, token_array);
 			exit(1);
