@@ -6,10 +6,10 @@
 char **reading_phase()
 {
 	int size, colons, i; 
-	char *input;
+	char *input, *path;
 	char **tokenized_input, **tokenized_path, **command;
-	char *path = "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
-	
+
+	path = getenv("PATH");
 	input = _getline();
 	size = _spaces(input);
 	colons = _colons(path);
