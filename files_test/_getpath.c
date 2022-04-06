@@ -1,8 +1,8 @@
 #include "../main.h"
 
 /**
- * _getpath - asd
- *Return: asd
+ * _getpath - Search the PATH variable in environ
+ *Return: Returns a pointer to the position of PATH variable
  **/
 char *_getpath()
 {
@@ -27,16 +27,13 @@ char *_getpath()
 }
 
 /**
- *
- *
- *
- *
+ * _realpath - Change the = from PATH to : (make it tokenizable)
+ *@path: string returned from _getpath()
+ *Return: 
  **/
-char **_realpath(char *)
+void _realpath(char *path)
 {
-	recibe el path, le cambia el signo de igual por : y lo tokeniza respecto a : y le concatena a cada
-	toek la ruta ingresada, devuelve un nuevo char ** con el path + ruta
-
+	
 }
 
 char *_
