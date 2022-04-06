@@ -19,7 +19,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 			write(1, "$ ", 2); /* 1 is equal to standard output (pantalla) */
 		str = _getline();
 		space = spaces(str);
-		if (str[0] == '\n')
+		if (ign_spaces_break(str) != 1)/*Ignorar espacios y saltos de linea*/
 		{
 			_free(1, str);
 			continue;
@@ -124,13 +124,13 @@ char **_strtok(char *str, int size)
 	size = spaces(str);
 	token_array = _calloc(size, sizeof(char *));
 
-	token = strtok(str, "\n"); /*Tokenize with \n to remove it from the string*/
+	token = strtok(str, "\n"); /*Tokenize with \n to remove it from the string */
 	token = strtok(str, separator);
 
 	while (token != NULL)
 	{
 		token_array[i] = token;
-		if (_strcmp(token, exitt) == 0)/*If input is "exit" free memory andExitShell*/
+		if (_strcmp(token, exitt) == 0)/*If input is "exit" free memoryandExitShell*/
 		{
 			_free(1, str), _free(1, token_array);
 			exit(1);
