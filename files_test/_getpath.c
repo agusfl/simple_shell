@@ -20,7 +20,7 @@ char *_getpath()
 			path = malloc(sizeof(char *) * (_strlen(environ[i])));
 			if (path == NULL)
 			{
-				freedom(1, path);
+				_free(1, path);
 				exit(-1);
 			}
 			_strcpy(path, environ[i]);
