@@ -25,6 +25,9 @@ char **reading_phase()
 		for (i = 0; i < colons; i++)
 		{
 			command = _strncat(tokenized_path[i], tokenized_input, colons);
+
+
+			return (command);
 		}
 		
 	}

@@ -17,6 +17,7 @@ char *_strcpy(char *dest, char *src);
 char *_strdup(char *str);
 void _free(int n, ...);
 void *_calloc(unsigned int nmemb, unsigned int size);
+int _strcmp(char *s1, char *s2);
 
 /* Implementation functions */
 char *_getline(void);
