@@ -10,14 +10,13 @@
 int main(int __attribute__((unused)) argc, char **argv)
 {
 	char *str = NULL, **array = NULL;
-	int space = 0;
+	int space = 0; 
 
 	while (1) /* infinite while --> kill with exit or ctrl + d */
 	{
 		signal(SIGINT, _ctrl_c); /*ctrl c - ignore and make a break line*/
-		printf("$ ");
-		/*if (EOF == 1)
-			exit(4);*/
+		if (isatty(STDIN_FILENO) == 1)
+			printf("$ ");
 		str = _getline();
 		space = spaces(str);
 
@@ -66,13 +65,12 @@ char *_getline(void)
 	buffer = malloc(bufsize * sizeof(char));
 	if (buffer == NULL)
 	{
-		perror("Unable to allocate buffer ");
 		_free(1, buffer);
 		exit(4);
 	}
 	if (getline(&buffer, &bufsize, stdin) == -1)
 	{
-		perror("Error in getline");
+		write(1, "\n", 1);
 		_free(1, buffer);
 		exit(4);
 	}
