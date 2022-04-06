@@ -10,16 +10,15 @@
 int main(int __attribute__((unused)) argc, char **argv)
 {
 	char *str = NULL, **array = NULL;
-	int space = 0; 
+	int space = 0;
 
 	while (1) /* infinite while --> kill with exit or ctrl + d */
 	{
 		signal(SIGINT, _ctrl_c); /*ctrl c - ignore and make a break line*/
-		if (isatty(STDIN_FILENO) == 1)
-			printf("$ ");
+		if (isatty(STDIN_FILENO) == 1) /* If it is 1 the interactive mode is on */
+			write(1, "$ ", 2); /* 1 is equal to standard output (pantalla) */
 		str = _getline();
 		space = spaces(str);
-
 		if (str[0] == '\n')
 		{
 			_free(1, str);
@@ -40,7 +39,7 @@ int main(int __attribute__((unused)) argc, char **argv)
 		{
 			if (execve(array[0], array, env) == -1)
 			{
-				perror("Could not execute execve");
+				perror(NULL); /*Con esto ya devuelve el mensaje por default*/
 				_free(1, str), _free(1, array);/*In case of error free allocated memory*/
 				return (0);
 			}
@@ -70,9 +69,17 @@ char *_getline(void)
 	}
 	if (getline(&buffer, &bufsize, stdin) == -1)
 	{
-		write(1, "\n", 1);
-		_free(1, buffer);
-		exit(4);
+		if (isatty(STDIN_FILENO) == 1)/*if it is interactive mode make a break line*/
+		{
+			write(1, "\n", 1);
+			_free(1, buffer);
+			exit(4);
+		}
+		else /*if not interactive mode dont make the break line*/
+		{
+			_free(1, buffer);
+			exit(4);
+		}
 	}
 
 	return (buffer);
