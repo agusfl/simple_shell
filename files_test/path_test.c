@@ -1,8 +1,14 @@
 #include "test.h"
 
-int maing()
+int main()
 {
+	char *str;
 
+	str = _getpath();
+
+	printf("%s\n", str);
+
+	return (0);
 }
 
 /**
@@ -28,7 +34,7 @@ char *_getpath()
 			break;
 		}
 	}
-	return (path);
+	return (path + 5);
 }
 
 /**
