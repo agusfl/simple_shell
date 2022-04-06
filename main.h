@@ -11,6 +11,8 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 
+extern char **environ;
+
 /* Auxiliar functions */
 int _strlen(char *str);
 char *_strcpy(char *dest, char *src);
