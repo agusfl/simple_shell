@@ -1,12 +1,8 @@
 #include "../main.h"
 
 /**
- *
- *
- *
- *
- *
- *
+ * _getpath - asd
+ *Return: asd
  **/
 char *_getpath()
 {
@@ -15,12 +11,12 @@ char *_getpath()
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		if (strcomparer(environ[i], "PATH") == 0)
+		if (_strcmp(environ[i], "PATH") == 0)
 		{
-			path = malloc(sizeof(char *) * (strlarge(environ[i])));
+			path = malloc(sizeof(char *) * (_strlen(environ[i])));
 			if (path == NULL)
 			{
-				freedom(1, path);
+				_free(1, path);
 				exit(-1);
 			}
 			_strcpy(path, environ[i]);
@@ -29,3 +25,18 @@ char *_getpath()
 	}
 	return (path);
 }
+
+/**
+ *
+ *
+ *
+ *
+ **/
+char **_realpath(char *)
+{
+	recibe el path, le cambia el signo de igual por : y lo tokeniza respecto a : y le concatena a cada
+	toek la ruta ingresada, devuelve un nuevo char ** con el path + ruta
+
+}
+
+char *_
