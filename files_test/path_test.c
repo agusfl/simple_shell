@@ -4,14 +4,18 @@ int main()
 {
 	char *str;
 	char **patty;
+	int size = 0, i;
 
 	str = _getpath();
-	patty = _pathtok(str);
-	
+	size = _colons(str);
+
 	printf("%s\n", str);
 
+	patty = _pathtok(str, size);
+	
+
 	for (i = 0; patty[i] != NULL; i++)
-		pritf("%s\n", patty[i]);
+		printf("%s\n", patty[i]);
 
 	return (0);
 }
@@ -206,4 +210,32 @@ int _colons(char *str)
 	colons += 2;/*added space for a new word and the NULL element of array*/
 
 	return (colons);
+}
+
+/**
+ *_calloc - allocates memory for an array
+ *@nmemb: number of elements of the array
+ *@size: size in bytes of the array
+ *Return: pointer to the array or NULL if it fails
+ **/
+
+void *_calloc(unsigned int nmemb, unsigned int size)
+{
+	void *mem_space;
+	unsigned int i, limit = 0;
+
+	limit = nmemb * size;
+
+	if (limit <= 0)
+		return (NULL);
+
+	mem_space = malloc(limit);
+
+	if (mem_space == NULL)
+		return (NULL);
+
+	for (i = 0; i < limit; i++)
+		*((char *)mem_space + i) = 0;
+
+	return (mem_space);
 }

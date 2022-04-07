@@ -17,4 +17,4 @@ void _free(int n, ...);
 char *_strcpy(char *dest, char *src);
 char **_pathtok(char *str, int size);
 int _colons(char *str);
-
+void *_calloc(unsigned int nmemb, unsigned int size);
