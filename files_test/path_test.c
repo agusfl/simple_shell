@@ -4,12 +4,32 @@ int main()
 {
 	char **patty;
 	int i = 0;
+	char *test[4] = {"hola", "como", "estas", NULL};
 
 	patty = _getpath();
 
+	/*for (i = 0; test[i] != NULL; i++)
+        {
+                printf("%d%s\n",i, test[i]);
+        }
+	putchar('\n');
+	for (i = 0; test[i] != NULL; i++)
+        {
+		test[i] = test[i] = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+		test[i] = strcat(test[i], "/ls");
+                printf("%d%s\n",i, test[i]);
+        }*/
+	putchar('\n');
+	for (i = 0; patty[i] != NULL; i++)
+        {
+ 
+                printf("%d%s\n",i, patty[i]);
+        }
+	putchar('\n');
 	for (i = 0; patty[i] != NULL; i++)
 	{
-		printf("%s\n", patty[i]);
+		patty[i] = strcat(patty[i], "/ls");
+		printf("%d%s\n",i, patty[i]);
 	}
 	
 
