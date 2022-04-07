@@ -241,3 +241,9 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	return (mem_space);
 }
 
+char **_command(char **path)
+{
+	char **path;
+
+	path = 
+}
