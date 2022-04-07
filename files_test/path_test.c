@@ -4,7 +4,6 @@ int main()
 {
 	char **patty;
 	int i = 0;
-	char *test[4] = {"hola", "como", "estas", NULL};
 
 	patty = _getpath();
 
@@ -31,10 +30,9 @@ int main()
  */
 
 char *_strcat(char *dest, char *src)
-{
-	int i, d;
-
-	i =  _strlen(dest);
+{	
+	int dest_length = 0, src_length = 0, i = 0;
+	char *new_string = NULL;
 	
 	printf("=======================\n");
 
@@ -46,12 +44,31 @@ char *_strcat(char *dest, char *src)
 
 	putchar('\n');
 
-	for (d = 0; src[d] != '\0'; i++, d++)
+	while (dest[dest_length] != '\0')
+		dest_length++;
+
+	while (src[src_length] != '\0')
+		src_length++;
+
+	new_string = _calloc(2, (dest_length + src_length + 1) * sizeof(char));
+
+	while (dest_length > i)
 	{
-		dest[i] = src[d];
+		new_string[i] = dest[i];
+		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
+
+	i = 0;
+
+	while (src_length > i)
+	{
+		new_string[dest_length + i] = src[i];
+		i++;
+	}
+
+	new_string[dest_length + i + 1] = '\0';
+
+	return (new_string);
 }
 
 /**
