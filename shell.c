@@ -7,10 +7,12 @@
  * Return: 0 if success
  */
 
-int main(int __attribute__((unused)) argc, char **argv)
+int main(int __attribute__((unused)) argc, char __attribute__((unused)) **argv)
 {
 	char *str = NULL, **array = NULL;
-	int space = 0;
+	int space = 0, status = 0;
+	pid_t child;
+	char *env[] = {NULL};
 
 	while (1) /* infinite while --> kill with exit or ctrl + d */
 	{
@@ -25,10 +27,6 @@ int main(int __attribute__((unused)) argc, char **argv)
 			continue;
 		}
 		array = _strtok(str, space);
-		pid_t child;
-		char *env[] = {NULL};
-		int status;
-
 		child = fork();
 		if (child == -1)
 		{
