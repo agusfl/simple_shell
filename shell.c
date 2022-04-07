@@ -9,7 +9,7 @@
 
 int main(int __attribute__((unused)) argc, char __attribute__((unused)) **argv)
 {
-	char *str = NULL, **array = NULL;
+	char *str = NULL, **array = NULL, *envv = "env";
 	int space = 0, status = 0;
 	pid_t child;
 	char *env[] = {NULL};
@@ -26,6 +26,12 @@ int main(int __attribute__((unused)) argc, char __attribute__((unused)) **argv)
 			_free(1, str);
 			continue;
 		}
+		if (_strcmp(str, envv) == 0)
+		{
+			print_env();
+			_free(1, str);
+			continue;
+		}
 		array = _strtok(str, space);
 		child = fork();
 		if (child == -1)
@@ -38,7 +44,7 @@ int main(int __attribute__((unused)) argc, char __attribute__((unused)) **argv)
 			if (execve(array[0], array, env) == -1)
 			{
 				perror(NULL); /*Con esto ya devuelve el mensaje por default*/
-				_free(1, str), _free(1, array);/*In case of error free allocated memory*/
+				_free(1, str), _free(1, array); /*In case of error free allocated memory*/
 				return (0);
 			}
 		}
