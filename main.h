@@ -21,6 +21,7 @@ void _free(int n, ...);
 void *_calloc(unsigned int nmemb, unsigned int size);
 int _strcmp(char *s1, char *s2);
 int ign_spaces_break(char *str);
+char *_strcat(char *dest, char *src);
 
 /* Implementation functions */
 char *_getline(void);
