@@ -19,3 +19,4 @@ char **_pathtok(char *str, int size);
 int _colons(char *str);
 void *_calloc(unsigned int nmemb, unsigned int size);
 char *_strstr(char *haystack, char *needle);
+int _compare(char *haystack, char *needle);
