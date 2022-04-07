@@ -29,5 +29,6 @@ char **_strtok(char *str, int size);
 int spaces(char *string);
 void _ctrl_c(int sig);
 char *_getpath();
+int print_env(void);
 
 #endif
