@@ -11,7 +11,10 @@
 extern char **environ;
 
 char *_getpath();
-int _strcmp_path(char *s1, char *s2);
+int _strcmp(char *s1, char *s2);
 int _strlen(char *str);
 void _free(int n, ...);
 char *_strcpy(char *dest, char *src);
+char **_pathtok(char *str, int size);
+int _colons(char *str);
+

@@ -3,10 +3,15 @@
 int main()
 {
 	char *str;
+	char **patty;
 
 	str = _getpath();
-
+	patty = _pathtok(str);
+	
 	printf("%s\n", str);
+
+	for (i = 0; patty[i] != NULL; i++)
+		pritf("%s\n", patty[i]);
 
 	return (0);
 }
@@ -43,7 +48,7 @@ char *_getpath()
  * @s2: Given S2 String
  * Return: 0 if both are equals or ascii diff
 */
-int _strcmp_path(char *s1, char *s2)
+int _strcmp(char *s1, char *s2)
 {
 	int diff = 0, i = 0;
 
@@ -147,7 +152,7 @@ char *_strcpy(char *dest, char *src)
  * Return: pointer to an array of the string tokens
  **/
 
-char **_strtok(char *str, int size)
+char **_pathtok(char *str, int size)
 {
 	char *token, *separator = ":", *exitt = "exit";
 	char **tokenized_path;
