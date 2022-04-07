@@ -12,11 +12,9 @@ int main()
 	printf("%s\n", str);
 
 	patty = _pathtok(str, size);
-	
 
 	for (i = 0; patty[i] != NULL; i++)
 	{
-		_strstr(patty[i], "/");
 		printf("%s\n", patty[i]);
 	}
 	
