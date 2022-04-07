@@ -19,7 +19,7 @@ char *_strcpy(char *dest, char *src);
 char *_strdup(char *str);
 void _free(int n, ...);
 void *_calloc(unsigned int nmemb, unsigned int size);
-int _strcmp(char *s1, char *s2, size_t n);
+int _strcmp(char *s1, char *s2);
 int ign_spaces_break(char *str);
 
 /* Implementation functions */
