@@ -2,16 +2,10 @@
 
 int main()
 {
-	char *str;
 	char **patty;
-	int size = 0, i;
+	int i = 0;
 
-	str = _getpath();
-	size = _colons(str);
-
-	printf("%s\n", str);
-
-	patty = _pathtok(str, size);
+	patty = _getpath();
 
 	for (i = 0; patty[i] != NULL; i++)
 	{
@@ -26,10 +20,10 @@ int main()
  * _getpath - Search the PATH variable in environ
  *Return: Returns a pointer to the position of PATH variable
  **/
-char *_getpath()
+char **_getpath()
 {
-	char *path = NULL;
-	int i = 0;
+	char *path = NULL, **tokenized_path;
+	int i = 0, size = 0;
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
@@ -45,7 +39,12 @@ char *_getpath()
 			break;
 		}
 	}
-	return (path + 5);
+	path += 5;
+
+	size = _colons(path);
+	tokenized_path = _pathtok(path, size);
+
+	return (tokenized_path);
 }
 
 /**
