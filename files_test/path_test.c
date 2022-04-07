@@ -2,16 +2,36 @@
 
 int main()
 {
-	char *str;
 	char **patty;
+	int i = 0;
+	char *test[4] = {"hola", "como", "estas", NULL};
 
-	str = _getpath();
-	patty = _pathtok(str);
-	
-	printf("%s\n", str);
+	patty = _getpath();
 
+	/*for (i = 0; test[i] != NULL; i++)
+        {
+                printf("%d%s\n",i, test[i]);
+        }
+	putchar('\n');
+	for (i = 0; test[i] != NULL; i++)
+        {
+		test[i] = test[i] = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+		test[i] = strcat(test[i], "/ls");
+                printf("%d%s\n",i, test[i]);
+        }*/
+	putchar('\n');
 	for (i = 0; patty[i] != NULL; i++)
-		pritf("%s\n", patty[i]);
+        {
+ 
+                printf("%d%s\n",i, patty[i]);
+        }
+	putchar('\n');
+	for (i = 0; patty[i] != NULL; i++)
+	{
+		patty[i] = strcat(patty[i], "/ls");
+		printf("%d%s\n",i, patty[i]);
+	}
+	
 
 	return (0);
 }
@@ -20,10 +40,10 @@ int main()
  * _getpath - Search the PATH variable in environ
  *Return: Returns a pointer to the position of PATH variable
  **/
-char *_getpath()
+char **_getpath()
 {
-	char *path = NULL;
-	int i = 0;
+	char *path = NULL, **tokenized_path;
+	int i = 0, size = 0;
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
@@ -39,7 +59,12 @@ char *_getpath()
 			break;
 		}
 	}
-	return (path + 5);
+	path += 5;
+
+	size = _colons(path);
+	tokenized_path = _pathtok(path, size);
+
+	return (tokenized_path);
 }
 
 /**
@@ -207,3 +232,32 @@ int _colons(char *str)
 
 	return (colons);
 }
+
+/**
+ *_calloc - allocates memory for an array
+ *@nmemb: number of elements of the array
+ *@size: size in bytes of the array
+ *Return: pointer to the array or NULL if it fails
+ **/
+
+void *_calloc(unsigned int nmemb, unsigned int size)
+{
+	void *mem_space;
+	unsigned int i, limit = 0;
+
+	limit = nmemb * size;
+
+	if (limit <= 0)
+		return (NULL);
+
+	mem_space = malloc(limit);
+
+	if (mem_space == NULL)
+		return (NULL);
+
+	for (i = 0; i < limit; i++)
+		*((char *)mem_space + i) = 0;
+
+	return (mem_space);
+}
+
