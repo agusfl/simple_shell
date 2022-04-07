@@ -3,10 +3,15 @@
 int main()
 {
 	char *str;
+	char **patty;
 
 	str = _getpath();
-
+	patty = _pathtok(str);
+	
 	printf("%s\n", str);
+
+	for (i = 0; patty[i] != NULL; i++)
+		pritf("%s\n", patty[i]);
 
 	return (0);
 }
@@ -43,7 +48,7 @@ char *_getpath()
  * @s2: Given S2 String
  * Return: 0 if both are equals or ascii diff
 */
-int _strcmp_path(char *s1, char *s2)
+int _strcmp(char *s1, char *s2)
 {
 	int diff = 0, i = 0;
 
@@ -140,4 +145,65 @@ char *_strcpy(char *dest, char *src)
 	return (new);
 }
 
+/**
+ * _pathtok - function for make tokens from a string
+ * @str: string to be tokenaized
+ * @size: spaces to tokenaized in the string
+ * Return: pointer to an array of the string tokens
+ **/
 
+char **_pathtok(char *str, int size)
+{
+	char *token, *separator = ":", *exitt = "exit";
+	char **tokenized_path;
+	int i = 0;
+
+	size = _colons(str); //CAMBIAR POR COLONS
+	tokenized_path = _calloc(size, sizeof(char *));
+
+	token = strtok(str, "\n"); /*Tokenize with \n to remove it from the string */
+	token = strtok(str, separator);
+
+	while (token != NULL)
+	{
+		tokenized_path[i] = token;
+		if (_strcmp(token, exitt) == 0)/*If input is "exit" free memoryandExitShell*/
+		{
+			_free(1, str), _free(1, tokenized_path);
+			exit(1);
+		}
+		if (tokenized_path == NULL)
+		{
+			_free(1, tokenized_path);
+			return (NULL);
+		}
+		token = strtok(NULL, separator);
+		i++;
+	}
+	tokenized_path[i] = NULL;
+
+	return (tokenized_path);
+}
+
+/**
+ * _colons - function to get the number of spaces of a string.
+ * @str: string to count spaces
+ * Return: number of spaces plus 1 for the null byte of the last word
+ */
+
+int _colons(char *str)
+{
+	int colons = 0, i = 0;
+
+	while (str[i] != '\0')
+	{
+		if (str[i] == ':') /*number representation of space character in ASCII */
+		{
+			colons++;
+		}
+		i++;
+	}
+	colons += 2;/*added space for a new word and the NULL element of array*/
+
+	return (colons);
+}
