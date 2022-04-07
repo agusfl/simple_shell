@@ -43,7 +43,7 @@ char *_getpath()
  * @s2: Given S2 String
  * Return: 0 if both are equals or ascii diff
 */
-int _strcmp(char *s1, char *s2)
+int _strcmp_path(char *s1, char *s2)
 {
 	int diff = 0, i = 0;
 
@@ -59,7 +59,7 @@ int _strcmp(char *s1, char *s2)
 
 		i++;
 	}
-	
+
 	return (diff);
 }
 
