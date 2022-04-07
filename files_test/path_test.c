@@ -29,9 +29,9 @@ int main()
 
 
 
-/*int _excecute(char **command)
+/*int _excecute(char **command_path, char* command)
 {
-	char **command = NULL;
+	char **command_path = NULL, *commands = NULL;
 
 	if (comand == NULL)
 		return (0);
@@ -75,6 +75,8 @@ char *_strcat(char *dest, char *src)
 	printf("%s\n", src);
 
 	putchar('\n');
+
+	printf("========================\n");
 
 	while (dest[dest_length] != '\0')
 		dest_length++;
