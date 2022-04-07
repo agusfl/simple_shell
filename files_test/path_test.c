@@ -8,32 +8,50 @@ int main()
 
 	patty = _getpath();
 
-	/*for (i = 0; test[i] != NULL; i++)
-        {
-                printf("%d%s\n",i, test[i]);
-        }
-	putchar('\n');
-	for (i = 0; test[i] != NULL; i++)
-        {
-		test[i] = test[i] = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-		test[i] = strcat(test[i], "/ls");
-                printf("%d%s\n",i, test[i]);
-        }*/
-	putchar('\n');
 	for (i = 0; patty[i] != NULL; i++)
         {
- 
                 printf("%d%s\n",i, patty[i]);
         }
 	putchar('\n');
 	for (i = 0; patty[i] != NULL; i++)
 	{
-		patty[i] = strcat(patty[i], "/ls");
+		patty[i] = _strcat(patty[i], "/ls");
 		printf("%d%s\n",i, patty[i]);
 	}
 	
 
 	return (0);
+}
+
+/**
+ * _strcat - concatenates two strings
+ * @dest: copy source to this buffer
+ * @src: source to copy
+ * Return: concatenate strings
+ */
+
+char *_strcat(char *dest, char *src)
+{
+	int i, d;
+
+	i =  _strlen(dest);
+	
+	printf("=======================\n");
+
+	printf("DEST: ");
+	printf("%s\n", dest);
+
+	printf("SRC: ");
+	printf("%s\n", src);
+
+	putchar('\n');
+
+	for (d = 0; src[d] != '\0'; i++, d++)
+	{
+		dest[i] = src[d];
+	}
+	dest[i] = '\0';
+	return (dest);
 }
 
 /**
@@ -159,14 +177,12 @@ void _free(int n, ...)
 char *_strcpy(char *dest, char *src)
 {
 	int i, length = 0;
-
 	char *new = dest;
 
 	length = _strlen(src);
 
 	for (i = 0; i <= (length + 1); i++)
 		new[i] = src[i];
-
 	return (new);
 }
 
