@@ -15,7 +15,7 @@ int main()
 	
 
 	for (i = 0; patty[i] != NULL; i++)
-		_strstr(patty[i], "/");
+		
 		printf("%s\n", patty[i]);
 
 	return (0);
