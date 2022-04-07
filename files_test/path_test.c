@@ -45,18 +45,21 @@ char *_getpath()
 */
 int _strcmp(char *s1, char *s2)
 {
-	int diff, index;
+	int diff = 0, i = 0;
 
-	diff = index = 0;
 	if (s1 == NULL || s2 == NULL)
 		return (-1);
-	while (s1[index] != '\0' && s2[index] != '\0')
+
+	while (s1[i] != '\0' && s2[i] != '\0')
 	{
-		diff = s1[index] - s2[index];
+		diff = s1[i] - s2[i];
+
 		if (diff != 0)
 			break;
-		index++;
+
+		i++;
 	}
+	
 	return (diff);
 }
 
