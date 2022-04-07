@@ -4,8 +4,13 @@ int main()
 {
 	char **patty;
 	int i = 0;
-
+	char *asd = "asd";
 	patty = _getpath();
+
+	if (_isletter(asd[0]) == 0)
+		printf("aaaaaaaaaaaaaaaaaaaaaaaaa\n");
+	else
+		printf("bbbbbbbbbbbbbbbbbbbbbbbbbbbbb\n");
 
 	for (i = 0; patty[i] != NULL; i++)
         {
@@ -20,6 +25,33 @@ int main()
 	
 
 	return (0);
+}
+
+
+
+/*int _excecute(char **command)
+{
+	char **command = NULL;
+
+	if (comand == NULL)
+		return (0);
+
+
+}*/
+
+
+/**
+ *_isletter - asas
+ *
+ *@c: sdf
+ * Return:asd
+*/
+int _isletter(int c)
+{
+	if ((c >= 'a' &&  c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	else
+		return (0);
 }
 
 /**
