@@ -5,62 +5,112 @@ int main()
 	char **patty;
 	int i = 0;
 	char *asd = "asd";
+	char *commando; 
 	patty = _getpath();
 
-	if (_isletter(asd[0]) == 0)
-		printf("aaaaaaaaaaaaaaaaaaaaaaaaa\n");
-	else
-		printf("bbbbbbbbbbbbbbbbbbbbbbbbbbbbb\n");
-
-	for (i = 0; patty[i] != NULL; i++)
-        {
-                printf("%d%s\n",i, patty[i]);
-        }
 	putchar('\n');
 	for (i = 0; patty[i] != NULL; i++)
 	{
-		patty[i] = _strcat(patty[i], "/ls");
+		patty[i] = _strcat(patty[i], "ls");
 		printf("%d%s\n",i, patty[i]);
 	}
-	
+
+	_execute(patty, NULL);
+
+/*	if (_isletter(asd[0]) == 0)
+		printf("a\n");
+	else
+		printf("b\n");
+*/	
 
 	return (0);
 }
 
 
 
-int _excecute(char **command_path, char* command)
+int _execute(char **command_path, char* command)
 {
-	char **command_path = NULL, *commands = NULL;
+	char **path = NULL;
+	int i = 0, status = 0;
+	pid_t child;
+	struct stat st;
+	char *env[] = {NULL};
 
-	if (comand == NULL || command_path == NULL)
+	if (command == NULL && command_path == NULL)
 		return (0);
+
+	printf("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n");
 
 	if (command != NULL)
 	{
-		Conactena el command al path, y ejecuta
+		printf("CCCCCCCCCCCCCCCCCCCCCC");
+		path = _getpath();
 
-		if (stat(command_concat) == 1) /*En caso de que exista el commando devuelve uno, crea el hijo y ejecuta*/
+		if (stat(path[i], &st) == 0) /*En caso de que exista el commando devuelve uno, crea el hijo y ejecuta*/
 		{
-			hace el fork y el exev
+			child = fork();
+                        if (child == -1)
+                        {
+                        	perror("asd");
+                                return (-1);
+                        }
+                        if (child == 0)
+                        {
+                                if (execve(command_path[i], command_path, env) == -1)
+                        	{
+                                	perror("asd");
+                                        /*FREES*/
+                                        return (0);
+                                }
+                        }
+                        else
+                        {
+                                wait(&status);
+                        }
+	
 		}
 		else
 		{
-			Printea el error en caso de que no exista el path concatenado
+			perror("asd");
 		}
 	}
-
-	if (command_path  != NULL)
+	
+	if (command_path != NULL)
 	{
-		if(stat(command_path) == 1)
+		printf("BBBBBBBBBBBBBBBBBBBBBBBBBBB\n");
+		for (i = 0; command_path[i] != NULL; i++)
 		{
-			fork 
-			exev
+			if(stat(command_path[i], &st) == 0)
+			{
+				child = fork();
+				if (child == -1)
+				{
+					perror("ad");
+					return (-1);
+				}
+				if (child == 0)
+				{
+					if (execve(command_path[i], command_path, env) == -1)
+					{
+						perror("asd");
+						/*FREES*/
+						return (0);
+					}
+				}
+				else
+				{
+					wait(&status);
+				}
+			}
+			else
+			{
+				perror("asd");
+			}
 		}
-		else
-		{
-			Printea error y se va
-		}
+	}
+	else
+	{
+		return (0);
 	}
 
 
@@ -93,18 +143,6 @@ char *_strcat(char *dest, char *src)
 {	
 	int dest_length = 0, src_length = 0, i = 0;
 	char *new_string = NULL;
-	
-	printf("=======================\n");
-
-	printf("DEST: ");
-	printf("%s\n", dest);
-
-	printf("SRC: ");
-	printf("%s\n", src);
-
-	putchar('\n');
-
-	printf("========================\n");
 
 	while (dest[dest_length] != '\0')
 		dest_length++;
@@ -160,6 +198,12 @@ char **_getpath()
 
 	size = _colons(path);
 	tokenized_path = _pathtok(path, size);
+
+	for (i = 0; tokenized_path[i] != NULL; i++)
+        {
+                tokenized_path[i] = _strcat(tokenized_path[i], "/");
+        }
+
 
 	return (tokenized_path);
 }

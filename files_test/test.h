@@ -22,3 +22,5 @@ char *_strstr(char *haystack, char *needle);
 int _compare(char *haystack, char *needle);
 char *_strcat(char *dest, char *src);
 int _isletter(int n);
+int _execute(char **command_path, char* command);
+
