@@ -29,15 +29,43 @@ int main()
 
 
 
-/*int _excecute(char **command_path, char* command)
+int _excecute(char **command_path, char* command)
 {
 	char **command_path = NULL, *commands = NULL;
 
-	if (comand == NULL)
+	if (comand == NULL || command_path == NULL)
 		return (0);
 
+	if (command != NULL)
+	{
+		Conactena el command al path, y ejecuta
 
-}*/
+		if (stat(command_concat) == 1) /*En caso de que exista el commando devuelve uno, crea el hijo y ejecuta*/
+		{
+			hace el fork y el exev
+		}
+		else
+		{
+			Printea el error en caso de que no exista el path concatenado
+		}
+	}
+
+	if (command_path  != NULL)
+	{
+		if(stat(command_path) == 1)
+		{
+			fork 
+			exev
+		}
+		else
+		{
+			Printea error y se va
+		}
+	}
+
+
+
+}
 
 
 /**
