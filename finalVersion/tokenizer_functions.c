@@ -1,36 +1,34 @@
 #include "main.h"
 
-/**
- *_strtok - function for make tokens of a string
- * Return: pointer to an array of the string tokens
- **/
-char **_strtok(void)
+char **_strtok(char *str, int size)
 {
-	char *str, *token;
-	char *separator = " ";
-	int i = 0, size;
+	char *token, *separator = " ", *exitt = "exit";
+	char **token_array;
+	int i = 0;
 
-	str = "Hola";
-	size = 1;
+	size = spaces(str);
+	token_array = _calloc(size, sizeof(char *));
 
-	char **token_array = malloc(sizeof(char *) * size);
-
+	token = strtok(str, "\n"); /*Tokenize with \n to remove it from the string */
 	token = strtok(str, separator);
+
 	while (token != NULL)
 	{
-		printf("%s\n", token);
-		token_array[i] = _strdup(token);
+		token_array[i] = token;
+		if (_strcmp(token, exitt) == 0)/*If input is "exit" free memoryandExitShell*/
+		{
+			_free(1, str), _free(1, token_array);
+			exit(1);
+		}
 		if (token_array == NULL)
 		{
-			_free(2, token_array);
+			_free(1, token_array);
 			return (NULL);
 		}
 		token = strtok(NULL, separator);
 		i++;
 	}
-	token_array[i] = token;
-	/* Token pasa a ser NULL porque salio del while en NULL y se lo asignamos*/
-	/*al ultimo elemento de nuestro array para que termine en NULL */
+	token_array[i] = NULL;
 
 	return (token_array);
 }

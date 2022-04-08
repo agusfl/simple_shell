@@ -23,7 +23,7 @@ char *_strcpy(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 char *_strcat(char *dest, char *src);
-char **_strtok(void);
+char **_strtok(char *str, int size);
 char **_pathtok(char *str, int size);
 int _isletter(int c);
 int _colons(char *str);
