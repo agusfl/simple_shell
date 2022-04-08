@@ -21,7 +21,7 @@ int main(int __attribute__((unused)) argc, char __attribute__((unused)) **argv)
 			write(1, "$ ", 2); /* 1 is equal to standard output (pantalla) */
 		str = _getline();
 		space = spaces(str);
-		if (ign_spaces_break(str) != 1)/*Ignorar espacios y saltos de linea*/
+		if (ign_spaces_break_tab(str) != 1)/*Ignore spaces, break line and tabs*/
 		{
 			_free(1, str);
 			continue;
@@ -160,35 +160,35 @@ char **_strtok(char *str, int size)
 
 void _free(int n, ...)
 {
-        char *ptr;
-        char **dptr;
-        va_list valist;
-        int i;
+	char *ptr;
+	char **dptr;
+	va_list valist;
+	int i;
 
-        va_start(valist, n);
+	va_start(valist, n);
 
-        if (n == 1)
-        {
-                ptr = va_arg(valist, char *);
-                if (ptr == NULL)
-                {
-                        return;
-                }
-                free(ptr);
-        }
-        if (n == 2)
-        {
-                dptr = va_arg(valist, char **);
-                if (dptr == NULL)
-                {
-                        return;
-                }
-                for (i = 0; dptr[i] != NULL; i++)
-                {
-                        free(dptr);
-                }
-                free(dptr);
-        }
-        va_end(valist);
+	if (n == 1)
+	{
+		ptr = va_arg(valist, char *);
+		if (ptr == NULL)
+		{
+			return;
+		}
+		free(ptr);
+	}
+	if (n == 2)
+	{
+		dptr = va_arg(valist, char **);
+		if (dptr == NULL)
+		{
+			return;
+		}
+		for (i = 0; dptr[i] != NULL; i++)
+		{
+			free(dptr);
+		}
+		free(dptr);
+	}
+	va_end(valist);
 }
 
