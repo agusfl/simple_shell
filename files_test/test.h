@@ -28,9 +28,13 @@ char *_getline(void);
 char **_strtok(char *str, int size);
 int spaces(char *string);
 void _ctrl_c(int sig);
-char *_getpath();
+char **_getpath();
 int print_env(void);
 void _execute(char **tokenized_input);
+char *_realpath(char **tokenized_input);
+int _isletter(int c);
+char **_pathtok(char *str, int size);
+int _colons(char *str);
 
 
 #endif
