@@ -32,5 +32,6 @@ int ign_spaces_break_tab(char *str);
 int print_env(void);
 char *_realpath(char **tokenized_input, char *command);
 char *convert_tab_space(char *str);
+char *_strdup(char *str);
 
 #endif
