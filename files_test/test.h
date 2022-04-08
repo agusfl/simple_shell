@@ -1,3 +1,6 @@
+#ifndef MAIN_H
+#define MAIN_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -10,17 +13,24 @@
 
 extern char **environ;
 
-char **_getpath();
-int _strcmp(char *s1, char *s2);
+/* Auxiliar functions */
 int _strlen(char *str);
-void _free(int n, ...);
 char *_strcpy(char *dest, char *src);
-char **_pathtok(char *str, int size);
-int _colons(char *str);
+char *_strdup(char *str);
+void _free(int n, ...);
 void *_calloc(unsigned int nmemb, unsigned int size);
-char *_strstr(char *haystack, char *needle);
-int _compare(char *haystack, char *needle);
+int _strcmp(char *s1, char *s2);
+int ign_spaces_break_tab(char *str);
 char *_strcat(char *dest, char *src);
-int _isletter(int n);
-int _execute(char **command_path, char* command);
 
+/* Implementation functions */
+char *_getline(void);
+char **_strtok(char *str, int size);
+int spaces(char *string);
+void _ctrl_c(int sig);
+char *_getpath();
+int print_env(void);
+void _execute(char **tokenized_input);
+
+
+#endif
