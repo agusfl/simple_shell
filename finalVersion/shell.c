@@ -30,15 +30,11 @@ int main(void)
 			continue;
 		}
 
-
-
 		array = _strtok(str, space);//input tokenizado
-        path = _getpath();
-
-        realpath = _realpath(path, str);
+		path = _getpath();
+		realpath = _realpath(path, str);
 
 		child = fork();
-    
 		if (child == -1)
 		{
 			perror("Error while creating a child process");
@@ -68,7 +64,7 @@ int main(void)
  **/
 char *_realpath(char **tokenized_input, char *command)
 {
-    char *realpath = NULL, *command;
+    char *realpath = NULL;
     struct stat st;
 	int i = 0;
 
