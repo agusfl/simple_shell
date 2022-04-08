@@ -41,8 +41,8 @@ char *_getline(void)
  **/
 char **_getpath()
 {
-	char *path = NULL;
-	int i = 0;
+	char *path = NULL, **tokenized_path;
+	int i = 0, size = 0;
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
@@ -58,5 +58,16 @@ char **_getpath()
 			break;
 		}
 	}
-	return (path);
+	path += 5;
+
+	size = _colons(path);
+	tokenized_path = _pathtok(path, size);
+
+	for (i = 0; tokenized_path[i] != NULL; i++)
+        {
+                tokenized_path[i] = _strcat(tokenized_path[i], "/");
+        }
+
+
+	return (tokenized_path);
 }
