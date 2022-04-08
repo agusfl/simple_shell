@@ -2,12 +2,10 @@
 
 /**
  * main - simple shell
- * @argc: argument counter
- * @argv: argument vector of strings
  * Return: 0 if success
  */
 
-int main(int __attribute__((unused)) argc, char __attribute__((unused)) **argv)
+int main(void)
 {
 	char *str = NULL, **array = NULL, *envv = "env";
 	int space = 0, status = 0;
@@ -21,6 +19,7 @@ int main(int __attribute__((unused)) argc, char __attribute__((unused)) **argv)
 			write(1, "$ ", 2); /* 1 is equal to standard output (pantalla) */
 		str = _getline();
 		space = spaces(str);
+		str = convert_tab_space(str);/* If the string is tab we convert it to space*/
 		if (ign_spaces_break_tab(str) != 1)/*Ignore spaces, break line and tabs*/
 		{
 			_free(1, str);
