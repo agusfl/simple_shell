@@ -2,7 +2,7 @@
 
 int main(void)
 {
-	char *str = NULL, **array = NULL, *envv = "env", **path = NULL, **realpath = NULL;
+	char *str = NULL, **array = NULL, *envv = "env", **path = NULL, *realpath = NULL;
 	int space = 0, status = 0;
 	pid_t child;
 	char *env[] = {NULL};

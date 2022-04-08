@@ -14,7 +14,7 @@
 extern char **environ;
 
 char *_getline(void);
-char *_getpath();
+char **_getpath();
 void *_calloc(unsigned int nmemb, unsigned int size);
 void _free(int n, ...);
 void _ctrl_c(int sig);
