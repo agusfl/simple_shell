@@ -34,7 +34,7 @@ int main(void)
 
 void _execute(char **tokenized_input)
 {
-	int status = 0;
+	int status = 0, back = 0;
 	struct stat st;
 	pid_t child;
 
@@ -50,6 +50,8 @@ void _execute(char **tokenized_input)
 				perror("");
 				return;
 			}
+
+			back = 1;
 		}
 		if (stat(tokenized_input[0], &st) == 0)
 		{
@@ -67,10 +69,14 @@ void _execute(char **tokenized_input)
 					/*free*/
 					return;
 				}
+			}
+			else /* parent process - waits for the child process to finish */
+				wait(&status);
+			if (back == 1)
+				free(tokenized_input[0]);
 		}
-		else /* parent process - waits for the child process to finish */
-			wait(&status);
-		}
+		else
+			perror(NULL);
 	}
 }
 
