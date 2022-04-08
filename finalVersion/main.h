@@ -13,22 +13,22 @@
 
 extern char **environ;
 
-/* Auxiliar Functions */
+char *_getline(void);
+char *_getpath();
+void *_calloc(unsigned int nmemb, unsigned int size);
+void _free(int n, ...);
+void _ctrl_c(int sig);
 int _strlen(char *str);
 char *_strcpy(char *dest, char *src);
-char *_strdup(char *str);
-void _free(int n, ...);
-void *_calloc(unsigned int nmemb, unsigned int size);
+char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
-int ign_spaces_break_tab(char *str);
 char *_strcat(char *dest, char *src);
-
-/* Implementation functions */
-char *_getline(void);
-char **_strtok(char *str, int size);
-int spaces(char *string);
-void _ctrl_c(int sig);
-char *_getpath();
+char **_strtok(void);
+char **_pathtok(char *str, int size);
+int _isletter(int c);
+int _colons(char *str);
+int spaces(char *str);
+int ign_spaces_break_tab(char *str);
 int print_env(void);
 
 #endif
