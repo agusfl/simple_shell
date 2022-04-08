@@ -30,6 +30,8 @@ int main(void)
 			continue;
 		}
 
+
+
 		array = _strtok(str, space);//input tokenizado
         path = _getpath();
 
@@ -44,7 +46,7 @@ int main(void)
 		}
 		if (child == 0) /*if it is 0 means that is the child process */
 		{
-			if (execve(realpath, realpath, env) == -1)
+			if (execve(realpath[0], realpath, env) == -1)
 			{
 				perror(NULL); /*Con esto ya devuelve el mensaje por default*/
 				_free(1, str), _free(1, array); /*In case of error free allocated memory*/
@@ -75,7 +77,7 @@ char *_realpath(char **tokenized_input, char *command)
 		realpath = _strcat(tokenized_input[i], command);
 		if (stat(realpath, &st) == 0)
 		{
-			return (realpath);
+			return (realpath); 
 		}
 	}
 
