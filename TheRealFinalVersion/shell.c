@@ -30,17 +30,16 @@ int main(void)
 			_free(1, input);
 			continue;
 		}
-		/*path = _getpath();*/
+	
 		tokenized_input = _strtok(input, space);
 		if (_isletter(input[0]) == 1)
 		{
 			path = _getpath();
 			input = _realpath(path, tokenized_input[0]);
-			/*if (input == NULL)
-			{
-				_free(1, input), _free(1, path), _free(1, tokenized_input);
-				return (0);
-			}*/
+			
+			if (input == NULL)
+				continue;
+
 			child = fork();
 			if (child == -1)
 			{
