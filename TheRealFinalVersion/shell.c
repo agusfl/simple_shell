@@ -55,7 +55,7 @@ char *_realpath(char **tokenized_input)
 	char **path = NULL;
 	struct stat st;
 
-	path = _getpath;
+	path = _getpath();
 	while (path[i] != NULL)
 	{
 		file_path = calloc(3, (sizeof(char) *
