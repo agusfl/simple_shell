@@ -52,14 +52,15 @@ int main(void)
 				if (execve(tokenized_input[0], tokenized_input, environ) == -1)
 				{
 					perror(NULL); /*Con esto ya devuelve el mensaje por default*/
-					_free(2, path), _free(2, tokenized_input);
-					return (0);
+					/*_free(2, path), _free(2, tokenized_input);
+					return (0);*/
+					break;
 				}
 			}
 			else /* parent process - waits for the child process to finish */
 			{
                                 wait(&status);
-                                _free(2, path), _free(2, tokenized_input);
+                                _free_path(2, path), _free(2, tokenized_input), free(input);
                         }
                 }
 		else
@@ -73,20 +74,22 @@ int main(void)
 			}
 			if (child == 0) /*if it is 0 means that is the child process */
 			{
-				if (execve(input, tokenized_input, environ) == -1)
+				if (execve(tokenized_input[0], tokenized_input, environ) == -1)
 				{
 					perror(NULL); /*Con esto ya devuelve el mensaje por default*/
-					_free(2, path), _free(2, tokenized_input);
-					return (0);
+					/*_free(2, path), _free(2, tokenized_input);
+					return (0);*/
+					break;
 				}
 			}
 			else /* parent process - waits for the child process to finish */
 			{
 				wait(&status);
-				_free(2, path), _free(2, tokenized_input);
+				_free_path(2, path), _free(2, tokenized_input), free(input);
 			}
 		}
 	}
+	 _free_path(2, path), _free(2, tokenized_input), free(input);
 	return (0);
 }
 

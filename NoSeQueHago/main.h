@@ -16,6 +16,7 @@ extern char **environ;
 /* Auxiliar functions */
 void *_calloc(unsigned int nmemb, unsigned int size);
 void _free(int n, ...);
+void _free_path(int n, ...);
 int _strlen(char *str);
 char *_strcpy(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
