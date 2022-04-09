@@ -29,11 +29,9 @@ char **_getpath()
 	tokenized_path = _pathtok(path, size);
 
 	for (i = 0; tokenized_path[i] != NULL; i++)
-        {
-                tokenized_path[i] = _strcat(tokenized_path[i], "/");
-        }
-
-
+	{
+		tokenized_path[i] = _strcat(tokenized_path[i], "/");
+	}
 	return (tokenized_path);
 }
 
@@ -70,3 +68,4 @@ char *_getline(void)
 
 	return (buffer);
 }
+
