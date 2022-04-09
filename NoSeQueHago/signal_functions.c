@@ -11,3 +11,4 @@ void _ctrl_c(int sig)
 	if (sig == SIGINT)
 		write(1, "\n$ ", 3);
 }
+
