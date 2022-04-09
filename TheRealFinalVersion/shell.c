@@ -82,8 +82,9 @@ void _execute_command(char **tokenized_input)
         if (_isletter(tokenized_input[0][0]) == 1)
         {
             command = tokenized_input[0];
+			printf("AAAAA%s\n", command);
             tokenized_input[0] = _realpath(tokenized_input, command);
-			printf("AAAAA%s\n", tokenized_input[0]);
+			printf("BBBBB%s\n", tokenized_input[0]);
             if (tokenized_input[0] == NULL)
             {
                 free(tokenized_input[0]);
