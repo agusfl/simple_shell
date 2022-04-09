@@ -30,11 +30,17 @@ int main(void)
 			_free(1, input);
 			continue;
 		}
-		path = _getpath();
+		/*path = _getpath();*/
 		tokenized_input = _strtok(input, space);
 		if (_isletter(input[0]) == 1)
 		{
+			path = _getpath();
 			input = _realpath(path, tokenized_input[0]);
+			/*if (input == NULL)
+			{
+				_free(1, input), _free(1, path), _free(1, tokenized_input);
+				return (0);
+			}*/
 			child = fork();
 			if (child == -1)
 			{
@@ -128,8 +134,8 @@ int print_env(void)
 }
 
 /**
- * convert_tab_space - function to convert tabs into spaces
- * @str: string to convert in case it has tabs ('\t')
+ * *convert_tab_space - function to convert tabs into spaces
+ * @input: string to convert in case it has tabs ('\t')
  * Return: string converted or NULL.
  */
 
