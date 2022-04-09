@@ -49,11 +49,11 @@ char **_strtok(char *str, int size)
 
 char **_pathtok(char *str, int size)
 {
-	char *token, *separator = ":", *exitt = "exit";
+	char *token, *separator = ":";
 	char **tokenized_path;
 	int i = 0;
 
-	size = _colons(str); //CAMBIAR POR COLONS
+	size = _colons(str);
 	tokenized_path = _calloc(size, sizeof(char *));
 
 	token = strtok(str, "\n"); /*Tokenize with \n to remove it from the string */
@@ -62,11 +62,7 @@ char **_pathtok(char *str, int size)
 	while (token != NULL)
 	{
 		tokenized_path[i] = token;
-		if (_strcmp(token, exitt) == 0)/*If input is "exit" free memoryandExitShell*/
-		{
-			_free(1, str), _free(1, tokenized_path);
-			exit(1);
-		}
+
 		if (tokenized_path == NULL)
 		{
 			_free(1, tokenized_path);
