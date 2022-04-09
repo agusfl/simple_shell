@@ -16,8 +16,8 @@ int main(void)
 		input = _getline();
 		space = spaces(input);
 		input = convert_tab_space(input);
-	        path = _getpath();
-		tokenized_input = _strtok(input, space);
+	        /*path = _getpath();*/
+		/*tokenized_input = _strtok(input, space);*/
 
 		if (ign_spaces_break_tab(input) != 1)
 		{
@@ -30,6 +30,10 @@ int main(void)
 			_free(1, input);
 			continue;
 		}
+
+		path = _getpath();
+                tokenized_input = _strtok(input, space);
+
 
 		if (_isletter(input[0]) == 1)
 		{
@@ -134,34 +138,20 @@ int print_env(void)
  * Return: string converted or NULL.
  */
 
-char *convert_tab_space(char *str)
+char *convert_tab_space(char *input)
 {
 	int i = 0;
 	int x = 0;
 
-	while (str[i] != '\0')
+	while (input[i] != '\0')
 	{
-		while (str[x] == '\t')
+		while (input[x] == '\t')
 		{
-			str[x] = ' ';
+			input[x] = ' ';
 			x++;
 		}
 		i++;
-		return (str);
+		return (input);
 	}
 	return (NULL);
 }
-
-/*
-void _execute(char **tokenized_input)
-{
-	int status = 0, back = 0;
-	struct stat st;
-	pid_t child;
-
-	if (tokenized_input[0] != NULL)
-	{
-		
-	}
-}
-*/
