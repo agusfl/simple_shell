@@ -32,7 +32,7 @@ void _free(int n, ...)
 		}
 		for (i = 0; dptr[i] != NULL; i++)
 		{
-			free(dptr);
+			free(dptr[i]);
 		}
 		free(dptr);
 	}

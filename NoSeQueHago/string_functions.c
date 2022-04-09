@@ -20,6 +20,12 @@ char *_strcat(char *dest, char *src)
 
 	new_string = _calloc(2, (dest_length + src_length + 1) * sizeof(char));
 
+	if (new_string == NULL)
+	{
+		_free(1, new_string);
+		return (NULL);
+	}
+
 	while (dest_length > i)
 	{
 		new_string[i] = dest[i];
@@ -126,7 +132,10 @@ char *_strdup(char *str)
 	str_copy = malloc(sizeof(char) * length);
 
 	if (str_copy == NULL)
+	{
+		_free(1, str_copy);
 		return (NULL);
+	}
 
 	for (i = 0; i < length; i++)
 		*(str_copy + i) = *(str + i);

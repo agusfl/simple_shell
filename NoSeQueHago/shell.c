@@ -7,7 +7,7 @@
 
 int main(void)
 {
-	char *input = NULL, /**realpath = NULL,*/  *envv = "env", **path = NULL, **tokenized_input = NULL;
+	char *input = NULL, *envv = "env", **path = NULL, **tokenized_input = NULL;
 	int space = 0, status = 0;
 	pid_t child;
 
@@ -30,15 +30,18 @@ int main(void)
 			_free(1, input);
 			continue;
 		}
+
 		path = _getpath();
 		tokenized_input = _strtok(input, space);
+
 		if (_isletter(input[0]) == 1)
 		{
 			input = _realpath(path, tokenized_input[0]);
 			child = fork();
 			if (child == -1)
 			{
-				perror("Error while creating a child process");
+				perror(NULL);
+				free(input), _free(2, path), _free(2, tokenized_input);
 				exit(4);
 			}
 			if (child == 0) /*if it is 0 means that is the child process */
@@ -46,13 +49,14 @@ int main(void)
 				if (execve(input, tokenized_input, environ) == -1)
 				{
 					perror(NULL); /*Con esto ya devuelve el mensaje por default*/
-					_free(1, input), _free(1, path), _free(1, tokenized_input);
+					free(input), _free(2, path), _free(2, tokenized_input);
 					return (0);
 				}
+				free(input);
 			}
 			else /* parent process - waits for the child process to finish */
 				wait(&status);
-		_free(1, input), _free(1, path), _free(1, tokenized_input);
+			free(input), _free(2, path), _free(2, tokenized_input);
 		}
 		else
 		{
@@ -68,12 +72,13 @@ int main(void)
 				if (execve(input, tokenized_input, environ) == -1)
 				{
 					perror(NULL); /*Con esto ya devuelve el mensaje por default*/
-					_free(1, input), _free(1, path), _free(1, tokenized_input);
+					free(input), _free(2, path), _free(2, tokenized_input);
 					return (0);
 				}
 			}
 			else /* parent process - waits for the child process to finish */
 				wait(&status);
+			free(input), _free(2, path), _free(2, tokenized_input);
 		}
 	}
 	return (0);
@@ -100,9 +105,8 @@ char *_realpath(char **path, char *command)
 		{
 			return (realpath);
 		}
+		free(realpath);
 	}
-
-	free(realpath);
 	free(command);
 	return (NULL);
 }
