@@ -60,7 +60,7 @@ int _colons(char *str)
 
 	while (str[i] != '\0')
 	{
-		if (str[i] == ':') /*number representation of space character in ASCII */
+		if (str[i] == ':')
 		{
 			colons++;
 		}
@@ -72,10 +72,9 @@ int _colons(char *str)
 }
 
 /**
- *_isletter - asas
- *
- *@c: sdf
- * Return:asd
+ * _isletter - cheks if it is a letter
+ * @c: ASCII value to check if it is a letter
+ * Return:1 if it is letter or 0 if not
 */
 int _isletter(int c)
 {
