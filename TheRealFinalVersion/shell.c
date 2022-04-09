@@ -48,26 +48,43 @@ int main(void)
  * Return: string with the path of the command
  **/
 
-char *_realpath(char **path, char *command)
+char *_realpath(char **tokenized_input)
 {
-	char *realpath = NULL;
+	int i = 0, x = 0;
+	char *file_path = NULL;
+	char **path = NULL;
 	struct stat st;
-	int i = 0;
 
-	for (i = 0; path[i] != NULL; i++)
+	path = _getpath;
+	while (path[i] != NULL)
 	{
-		realpath = _strcat(path[i], command);
-
-		if (stat(realpath, &st) == 0)
+		file_path = calloc(3, (sizeof(char) *
+		((_strlen(path[i])) + (_strlen(tokenized_input[x])) + 2)));
+		
+		if (file_path == NULL)
 		{
-			_free(1, command);
-			return (realpath);
+			free(path);
+			return (NULL);
 		}
-	}
 
-	_free(1, realpath);
-	_free(1, command);
-	return (NULL);
+		_strcat(file_path, path[i]);
+		_strcat(file_path, "/");
+		_strcat(file_path, tokenized_input[x]);
+
+		printf("CCCCCC %s\n", file_path);
+
+		if (stat(file_path, &st) == 0)
+		{
+			free(path);
+			return (file_path);
+		}
+		i++;
+	free(file_path);
+	}
+	write(STDOUT_FILENO, tokenized_input[0], _strlen(tokenized_input[0]));
+	write(STDOUT_FILENO, ": not found\n", 12);
+	free(path);
+	return (NULL)
 }
 
 void _execute_command(char **tokenized_input)
