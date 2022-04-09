@@ -38,7 +38,7 @@ int main(void)
 			path = _getpath();
 			input = _realpath(path, tokenized_input[0]);
 			
-			if (input == NULL || stat(input, st) == 0)
+			if (input == NULL || stat(input, &st) == 0)
 				continue;
 
 			child = fork();
