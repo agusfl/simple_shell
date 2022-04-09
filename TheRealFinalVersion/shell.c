@@ -84,7 +84,7 @@ char *_realpath(char **tokenized_input)
 	write(STDOUT_FILENO, tokenized_input[0], _strlen(tokenized_input[0]));
 	write(STDOUT_FILENO, ": not found\n", 12);
 	free(path);
-	return (NULL)
+	return (NULL);
 }
 
 void _execute_command(char **tokenized_input)
@@ -92,7 +92,7 @@ void _execute_command(char **tokenized_input)
     pid_t child;
     struct stat st;
     int status, succes = 0;
-    char *command = NULL;
+    char *command = NULL, **path;
 
 	path = _getpath();
 

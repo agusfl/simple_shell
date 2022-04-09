@@ -35,7 +35,7 @@ void _ctrl_c(int sig);
 char **_strtok(char *str, int size);
 char **_pathtok(char *str, int size);
 int print_env(void);
-char *_realpath(char **tokenized_input, char *command);
+char *_realpath(char **tokenized_input);
 void _execute_command(char **tokenized_input);
 
 #endif
