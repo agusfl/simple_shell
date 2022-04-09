@@ -7,7 +7,7 @@
 
 int main(void)
 {
-	char *input = NULL, /**realpath = NULL,*/  *envv = "env", **path = NULL, **tokenized_input = NULL;
+	char *input = NULL,*envv = "env", **tokenized_input = NULL, **path;
 	int space = 0, status = 0;
 	pid_t child;
 	struct stat st;
@@ -17,69 +17,27 @@ int main(void)
 		signal(SIGINT, _ctrl_c);
 		if (isatty(STDIN_FILENO) == 1)
 			write(1, "$ ", 2);
+
 		input = _getline();
 		space = spaces(input);
 		input = convert_tab_space(input);
+		tokenized_input = _strtok(input, space);
+
 		if (ign_spaces_break_tab(input) != 1)
 		{
 			_free(1, input);
 			continue;
 		}
+
 		if (_strcmp(input, envv) == 0)
 		{
 			print_env();
 			_free(1, input);
 			continue;
 		}
-	
-		tokenized_input = _strtok(input, space);
-		if (_isletter(input[0]) == 1)
-		{
-			path = _getpath();
-			input = _realpath(path, tokenized_input[0]);
 
-			child = fork();
-			if (child == -1)
-			{
-				perror("Error while creating a child process");
-				exit(4);
-			}
-			if (child == 0) /*if it is 0 means that is the child process */
-			{
-				if (execve(input, tokenized_input, environ) == -1)
-				{
-					perror(NULL); /*Con esto ya devuelve el mensaje por default*/
-					_free(1, input), _free(1, path), _free(1, tokenized_input);
-					return (0);
-				}
-			}
-			else /* parent process - waits for the child process to finish */
-				wait(&status);
-		_free(1, input), _free(1, path), _free(1, tokenized_input);
-		}
-		else
-		{
-
-			child = fork();
-			if (child == -1)
-			{
-				perror("Error while creating a child process");
-				exit(4);
-			}
-			if (child == 0) /*if it is 0 means that is the child process */
-			{
-				if (execve(input, tokenized_input, environ) == -1)
-				{
-					perror(NULL); /*Con esto ya devuelve el mensaje por default*/
-					_free(1, input), _free(1, path), _free(1, tokenized_input);
-					return (0);
-				}
-			}
-			else /* parent process - waits for the child process to finish */
-				wait(&status);
-		}
-	}
-	return (0);
+		_execute_command(tokenized_input);
+		free(tokenized_input);
 }
 
 /**
@@ -101,55 +59,59 @@ char *_realpath(char **path, char *command)
 
 		if (stat(realpath, &st) == 0)
 		{
+			_free(1, command);
 			return (realpath);
 		}
 	}
 
-	free(realpath);
-	free(command);
+	_free(1, realpath);
+	_free(1, command);
 	return (NULL);
 }
 
-/**
- * print_env - print environmental variables
- * Return: 0 if success
- */
-
-int print_env(void)
+void _execute_command(char **tokenized_input)
 {
-	int i = 0;
+    pid_t child;
+    struct stat st;
+    int status, succes = 0;
+    char *command = NULL;
 
-	while (environ[i] != NULL)
-	/*environ is the global variable and was declared in the main.h*/
-	{
-		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
-		/*print in standard output the environ variable*/
-		write(STDOUT_FILENO, "\n", 1);
-		i++;
-	}
-	return (0);
-}
-
-/**
- * *convert_tab_space - function to convert tabs into spaces
- * @input: string to convert in case it has tabs ('\t')
- * Return: string converted or NULL.
- */
-
-char *convert_tab_space(char *input)
-{
-	int i = 0;
-	int x = 0;
-
-	while (input[i] != '\0')
-	{
-		while (input[x] == '\t')
-		{
-			input[x] = ' ';
-			x++;
-		}
-		i++;
-		return (input);
-	}
-	return (NULL);
+    if (tokenized_input[0] != NULL)
+    {
+        if (_isletter(tokenized_input[0][0]) == 1)
+        {
+            command = tokenized_input[0];
+            tokenized_input[0] = _realpath(tokenized_input, command);
+            if (tokenized_input[0] == NULL)
+            {
+                free(tokenized_input[0]);
+                return;
+            }
+            succes = 1;
+        }
+        if (stat(tokenized_input[0], &st) == 0)
+        {
+            child = fork();
+            if (child == 0)
+            {
+                if (execve(tokenized_input[0], tokenized_input, environ) == -1)
+                {
+                    perror(tokenized_input[0]);
+                    free(tokenized_input[0]);
+                    free(tokenized_input);
+                    exit(-1);
+                }
+            }
+            else
+                wait(&status);
+                
+            if (succes == 1)
+                free(tokenized_input[0]);
+        }
+        else
+        {
+            write(STDOUT_FILENO, tokenized_input[0], _strlen(tokenized_input[0]));
+            write(STDOUT_FILENO, ": not found\n", 12);
+        }
+    }
 }

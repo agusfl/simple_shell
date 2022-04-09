@@ -83,3 +83,47 @@ int _isletter(int c)
 	else
 		return (0);
 }
+
+/**
+ * print_env - print environmental variables
+ * Return: 0 if success
+ */
+
+int print_env(void)
+{
+	int i = 0;
+
+	while (environ[i] != NULL)
+	/*environ is the global variable and was declared in the main.h*/
+	{
+		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
+		/*print in standard output the environ variable*/
+		write(STDOUT_FILENO, "\n", 1);
+		i++;
+	}
+	return (0);
+}
+
+/**
+ * *convert_tab_space - function to convert tabs into spaces
+ * @input: string to convert in case it has tabs ('\t')
+ * Return: string converted or NULL.
+ */
+
+char *convert_tab_space(char *input)
+{
+	int i = 0;
+	int x = 0;
+
+	while (input[i] != '\0')
+	{
+		while (input[x] == '\t')
+		{
+			input[x] = ' ';
+			x++;
+		}
+		i++;
+		return (input);
+	}
+	return (NULL);
+}
