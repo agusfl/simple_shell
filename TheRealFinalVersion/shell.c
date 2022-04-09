@@ -10,6 +10,7 @@ int main(void)
 	char *input = NULL, /**realpath = NULL,*/  *envv = "env", **path = NULL, **tokenized_input = NULL;
 	int space = 0, status = 0;
 	pid_t child;
+	struct stat st;
 
 	while (1)
 	{
@@ -37,7 +38,7 @@ int main(void)
 			path = _getpath();
 			input = _realpath(path, tokenized_input[0]);
 			
-			if (input == NULL)
+			if (input == NULL || stat(input, st) == 0)
 				continue;
 
 			child = fork();
