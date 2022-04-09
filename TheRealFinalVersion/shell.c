@@ -75,7 +75,9 @@ void _execute_command(char **tokenized_input)
     pid_t child;
     struct stat st;
     int status, succes = 0;
-    char *command = NULL;
+    char *command = NULL, **path;
+
+	path = _getpath();
 
     if (tokenized_input[0] != NULL)
     {
@@ -83,7 +85,7 @@ void _execute_command(char **tokenized_input)
         {
             command = tokenized_input[0];
 			printf("AAAAA%s\n", command);
-            tokenized_input[0] = _realpath(tokenized_input, command);
+            tokenized_input[0] = _realpath(path, command);
 			printf("BBBBB%s\n", tokenized_input[0]);
             if (tokenized_input[0] == NULL)
             {
