@@ -30,8 +30,10 @@ void _free(int n, ...)
 		{
 			return;
 		}
+		
 		for (i = 0; dptr[i] != NULL; i++)
 		{
+			printf("%s\n", dptr[i]);
 			free(dptr[i]);
 		}
 		free(dptr);

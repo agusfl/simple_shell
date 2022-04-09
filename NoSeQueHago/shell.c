@@ -34,14 +34,14 @@ int main(void)
 		path = _getpath();
 		tokenized_input = _strtok(input, space);
 
-		if (_isletter(input[0]) == 1)
+		if (_isletter(tokenized_input[0][0]) == 1)
 		{
 			input = _realpath(path, tokenized_input[0]);
 			child = fork();
 			if (child == -1)
 			{
 				perror(NULL);
-				free(input), _free(2, path), _free(2, tokenized_input);
+				_free(2, path), _free(2, tokenized_input);
 				exit(4);
 			}
 			if (child == 0) /*if it is 0 means that is the child process */
@@ -49,14 +49,14 @@ int main(void)
 				if (execve(input, tokenized_input, environ) == -1)
 				{
 					perror(NULL); /*Con esto ya devuelve el mensaje por default*/
-					free(input), _free(2, path), _free(2, tokenized_input);
+					_free(2, path), _free(2, tokenized_input);
 					return (0);
 				}
 			}
 			else /* parent process - waits for the child process to finish */
 			{
                                 wait(&status);
-                                free(input), _free(2, path), _free(2, tokenized_input);
+                                _free(2, path), _free(2, tokenized_input);
                         }
                 }
 		else
@@ -110,7 +110,7 @@ char *_realpath(char **path, char *command)
 		}
 		free(realpath);
 	}
-	free(command);
+
 	return (NULL);
 }
 
