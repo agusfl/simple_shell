@@ -38,6 +38,7 @@ int main(void)
 
 		_execute_command(tokenized_input);
 		free(tokenized_input);
+	}
 }
 
 /**
