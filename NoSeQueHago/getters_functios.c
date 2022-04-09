@@ -32,7 +32,8 @@ char **_getpath()
         {
                 tokenized_path[i] = _strcat(tokenized_path[i], "/");
         }
-
+	path -= 5;
+	free(path);
 	return (tokenized_path);
 }
 

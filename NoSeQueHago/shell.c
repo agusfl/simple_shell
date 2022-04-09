@@ -21,13 +21,13 @@ int main(void)
 		input = convert_tab_space(input);
 		if (ign_spaces_break_tab(input) != 1)
 		{
-			_free(1, input);
+			free(input);
 			continue;
 		}
 		if (_strcmp(input, envv) == 0)
 		{
 			print_env();
-			_free(1, input);
+			free(input);
 			continue;
 		}
 
@@ -52,12 +52,13 @@ int main(void)
 					free(input), _free(2, path), _free(2, tokenized_input);
 					return (0);
 				}
-				free(input);
 			}
 			else /* parent process - waits for the child process to finish */
-				wait(&status);
-			free(input), _free(2, path), _free(2, tokenized_input);
-		}
+			{
+                                wait(&status);
+                                free(input), _free(2, path), _free(2, tokenized_input);
+                        }
+                }
 		else
 		{
 
@@ -72,13 +73,15 @@ int main(void)
 				if (execve(input, tokenized_input, environ) == -1)
 				{
 					perror(NULL); /*Con esto ya devuelve el mensaje por default*/
-					free(input), _free(2, path), _free(2, tokenized_input);
+					_free(2, path), _free(2, tokenized_input);
 					return (0);
 				}
 			}
 			else /* parent process - waits for the child process to finish */
+			{
 				wait(&status);
-			free(input), _free(2, path), _free(2, tokenized_input);
+				_free(2, path), _free(2, tokenized_input);
+			}
 		}
 	}
 	return (0);
