@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 echo ""
 echo "=============Teste 1============="
 echo "Command tested: "ls -l" | ./hsh"
