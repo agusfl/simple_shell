@@ -38,7 +38,7 @@ int main(void)
 		path = _getpath();
 		if (_isletter(tokenized_input[0][0]) == 1)
 		{
-			tokenized_input[0] = _realpath(path, input);
+			tokenized_input[0] = _realpath(path, tokenized_input[0]);
 			child = fork();
 			if (child == -1)
 			{
