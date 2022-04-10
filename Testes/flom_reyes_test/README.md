@@ -1,20 +1,18 @@
-# Simple Shell project Tester for Holberton
+# Simple Shell project - Tester for Holberton
 
 This is a simple implementation of tests for our own version of a **shell** for a linux system.
-
-# Synopsis
 
 ## Environment 
 * Shell Script
 * Operating System: Ubuntu 20.04 LTS
-* Execution Permissions: Needed 
+* Execution Permissions: Needed --> chmod u+x
 
-## How to Use:
+## How to Use it:
 
-Firts of, clone this repo with the next command: ```git clone https://github.com/Nachop51/shell_tests.git```
+Firts of all, clone this repo with the next command: ```git clone https://github.com/Nachop51/shell_tests.git```
 Then run this command, ```gcc -g -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh```
 Once you do that just type ```sh tests.sh```
-Finally compare the "Correct Output" with the "Your Output", both outputs have to be the same.
+Finally compare the "Correct Output" with "Your Output", both outputs should be the same.
 
 ## Authors
 
