@@ -25,18 +25,18 @@ char **_strtok(char *str, int size)
 		if (_strcmp(token, exitt) == 0)/*If input is "exit" free memoryandExitShell*/
 		{
 			_free(1, str), _free(2, token_array);
-			exit(1);
+			return(NULL);
 		}
 		if (token_array == NULL)
 		{
-			_free(2, token_array);
+			_free(2, token_array), _free(1, str);
 			return (NULL);
 		}
 		token = strtok(NULL, separator);
 		i++;
 	}
 	token_array[i] = NULL;
-
+	
 	return (token_array);
 }
 

@@ -30,8 +30,12 @@ int main(void)
 			free(input);
 			continue;
 		}
-		path = _getpath();
 		tokenized_input = _strtok(input, space);
+		if (tokenized_input == NULL)
+		{
+			 exit(1);
+		}	
+		path = _getpath();
 		if (_isletter(tokenized_input[0][0]) == 1)
 		{
 			tokenized_input[0] = _realpath(path, tokenized_input[0]);
@@ -51,7 +55,7 @@ int main(void)
 			else /* parent process - waits for the child process to finish */
 			{
 				wait(&status);
-				_free_path(2, path), _free(2, tokenized_input), free(input);
+				_free_path(2, path), _free(2, tokenized_input), _free(1, input);
 			}
 		}
 		else
@@ -73,10 +77,10 @@ int main(void)
 			else /* parent process - waits for the child process to finish */
 			{
 				wait(&status);
-				_free_path(2, path), _free(2, tokenized_input), free(input);
+				_free_path(2, path), _free(2, tokenized_input), _free(1, input);
 			}
 		}
 	}
-	_free_path(2, path), _free(2, tokenized_input), free(input);
+	_free_path(2, path), _free(2, tokenized_input), _free(1, input);
 	return (0);
 }
