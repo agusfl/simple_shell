@@ -1,0 +1,25 @@
+NAME
+       hsh — shell, our implementation of a UNIX standard command line interpreter
+
+SYNOPSIS
+       hsh [-options]...[comand_string | file]
+
+DESCRIPTION
+       The hsh is our implementation of a command language interpreter that shall
+       execute commands read from a command line string, the standard
+       input, or a specified file.
+       This shell is based on the original UNIX shell written by Ken Thompson.
+
+COMMANDS
+       Our hsh version support the commands that are determined in the PATH environmental
+       variable. In PATH is specified the directories to be searched to find a command.
+       Arguments for the commands are supported.
+
+BUILT INS
+       exit - If you type: exit --> in the interactive mode it allows you to exit the shell.
+       env - If you type: env --> the environmental variables will be listed.
+
+SIGNALS
+       ctrl + c - This signal was set to be ignored.
+       ctrl + d - This signal was set to exit the shell.
+
