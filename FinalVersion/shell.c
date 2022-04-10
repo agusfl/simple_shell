@@ -8,7 +8,7 @@
 int main(void)
 {
 	char *input = NULL, *envv = "env", **path = NULL, **tokenized_input = NULL;
-	int space = 0, status = 0, i = 0;
+	int space = 0, status = 0;
 	pid_t child;
 
 	while (1)
@@ -33,9 +33,6 @@ int main(void)
 
 		path = _getpath();
 		tokenized_input = _strtok(input, space);
-
-		for (i = 0; tokenized_input[i] != NULL; i++)
-			printf("%s.\n", tokenized_input[i]);
 
 		if (_isletter(tokenized_input[0][0]) == 1)
 		{
