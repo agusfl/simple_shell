@@ -30,10 +30,8 @@ int main(void)
 			free(input);
 			continue;
 		}
-
 		path = _getpath();
 		tokenized_input = _strtok(input, space);
-
 		if (_isletter(tokenized_input[0][0]) == 1)
 		{
 			tokenized_input[0] = _realpath(path, tokenized_input[0]);
@@ -49,8 +47,6 @@ int main(void)
 				if (execve(tokenized_input[0], tokenized_input, environ) == -1)
 				{
 					perror(NULL); /*Con esto ya devuelve el mensaje por default*/
-					/*_free(2, path), _free(2, tokenized_input);
-					return (0);*/
 					break;
 				}
 			}
@@ -58,11 +54,10 @@ int main(void)
 			{
                                 wait(&status);
                                 _free_path(2, path), _free(2, tokenized_input), free(input);
-                        }
-                }
+            }
+        }
 		else
 		{
-
 			child = fork();
 			if (child == -1)
 			{
@@ -74,8 +69,6 @@ int main(void)
 				if (execve(tokenized_input[0], tokenized_input, environ) == -1)
 				{
 					perror(NULL); /*Con esto ya devuelve el mensaje por default*/
-					/*_free(2, path), _free(2, tokenized_input);
-					return (0);*/
 					break;
 				}
 			}
@@ -89,4 +82,3 @@ int main(void)
 	 _free_path(2, path), _free(2, tokenized_input), free(input);
 	return (0);
 }
-
