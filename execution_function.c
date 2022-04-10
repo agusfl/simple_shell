@@ -1,0 +1,53 @@
+#include "main.h"
+
+void _execute_command(char **path, char **tokenized_input)
+{
+    pid_t child;
+    int status = 0;
+
+    tokenized_input[0] = _realpath(path, tokenized_input[0]);
+    child = fork();
+    if (child == -1)
+    {
+        perror(NULL); /*Null return default message*/
+    }
+    if (child == 0) /*if it is 0 means that is the child process */
+    {
+        if (execve(tokenized_input[0], tokenized_input, environ) == -1)
+        {
+            perror(NULL); /*Null return default message*/
+            break;
+        }
+    }
+    else /* parent process - waits for the child process to finish */
+    {
+        wait(&status);
+        _free_path(2, path), _free(2, tokenized_input);
+    }
+}
+
+void _execute_path(char **tokenized_input)
+{
+    pid_t child;
+    int status = 0;
+
+    child = fork();
+    if (child == -1)
+    {
+        perror(NULL); /*Null return default message*/
+        exit(4);
+    }
+    if (child == 0) /*if it is 0 means that is the child process */
+    {
+        if (execve(tokenized_input[0], tokenized_input, environ) == -1)
+        {
+            perror(NULL); /*Null return default message*/
+            break;
+        }
+    }
+    else /* parent process - waits for the child process to finish */
+    {
+        wait(&status);
+        _free(2, tokenized_input);
+    }
+}

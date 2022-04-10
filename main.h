@@ -37,5 +37,7 @@ char **_strtok(char *str, int size);
 char **_pathtok(char *str, int size);
 int print_env(void);
 char *_realpath(char **tokenized_input, char *command);
+void _execute_path(char **tokenized_input);
+void _execute_command(char **path, char **tokenized_input);
 
 #endif
