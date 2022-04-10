@@ -1,18 +1,21 @@
 # Simple Shell project for Holberton
 
 This is a simple implementation of a **shell** for a linux system. We tried to emulate the behavior
-of the sh language. 
+of the ``sh`` language. 
 
 # Synopsis
 
 Simply put, the shell is a program that takes commands from the keyboard and gives them to the operating system to
 perform. In the past, it was the only user interface available on a Unix-like system such as Linux.
-Nowadays, we have graphical user interfaces (GUIs) in addition to command line interfaces (CLIs) such as the shell.
+Nowadays, there are graphical user interfaces (GUIs) in addition to command line interfaces (CLIs) such as the shell.
+
 Both GUI and CLI have the same purpose to **interact with the operating system** but their input methods are
 different.
-Our shell currently handles the executions of executables found in the environmental variable PATH, with
-or without their full paths, for example it will handle **ls** to list the directories and files of your current
-working directory as well as **/usr/bin/ls** (full path).
+
+Our shell currently handles the executions of executables found in the environmental variable **PATH**, with
+or without their full paths, for example it will handle the **ls** command to list the directories and files of your
+current working directory as well as **/usr/bin/ls** (full path).
+
 We also created some builtins such as: **env** and **exit**.
 To exit the shell you can use the **exit** builtin or hit ctrl + d on your keyboard.
 
@@ -28,8 +31,8 @@ To exit the shell you can use the **exit** builtin or hit ctrl + d on your keybo
 | Files          |Desription
 |:----------------|:-------------------------------:|
 |``main.h`` | Hold prototypes of functions, libraries, and headers used.                   
-|``shell.c`` | Main function to execute our shell version.
-|``getters_function.c`` | Hold functions to get the path, get a string (getline) from the user, print environment (**env** builtin), and function to return the full path of a command.
+|``shell.c`` | Main function to execute our shell implementation.
+|``getters_function.c`` | Hold functions to get the path from the environment, get a string (getline) from the user, print environment (**env** builtin), and function to return the full path of a command.
 |``memory_functions.c`` | Function to free a pointer, double pointer, and our own calloc function to allocate memory for an array.
 |``signal_functions.c`` | Ignore **ctrl + c** signal from the keyboard.
 |``string_functions.c`` | Functions to manipulate strings.
@@ -41,18 +44,20 @@ To exit the shell you can use the **exit** builtin or hit ctrl + d on your keybo
 
 ## Builtins
 
->**exit:** exit the shell --> ``Usage: exit``.
->**env:** prints the environmental variables --> ``Usage: env``.
+> **exit:** exit the shell --> ``Usage: exit``.
+> **env:** prints the environmental variables --> ``Usage: env``.
 
 ## Modes
 
 In order for our shell to be used in **both** ``interactive`` or ``non interactive`` mode the first thing to do is
 to clone this repository.
-Then you have to compile the code in the following way: ```gcc -Wall -Werror -Wextra -pedantic -std=gnu89 .c -o hsh```
+Then you have to compile the code in the following way: 
+```gcc -Wall -Werror -Wextra -pedantic -std=gnu89 .c -o hsh```
 
 ### Interactive mode:
 
-Once you are in your terminal you have to run: ```./hsh```
+Once you are in your terminal you have to run:```./hsh```
+
 Thats it you are now running our **hsh** shell in interactive mode.
 You can pass commands such as: **pwd** or the full path **/usr/bin/pwd**.
 
