@@ -45,6 +45,7 @@ To exit the shell you can use the **exit** builtin or hit ctrl + d on your keybo
 ## Builtins
 
 > **exit:** exit the shell --> ``Usage: exit``.
+
 > **env:** prints the environmental variables --> ``Usage: env``.
 
 ## Modes
@@ -52,6 +53,7 @@ To exit the shell you can use the **exit** builtin or hit ctrl + d on your keybo
 In order for our shell to be used in **both** ``interactive`` or ``non interactive`` mode the first thing to do is
 to clone this repository.
 Then you have to compile the code in the following way: 
+
 ```gcc -Wall -Werror -Wextra -pedantic -std=gnu89 .c -o hsh```
 
 ### Interactive mode:
