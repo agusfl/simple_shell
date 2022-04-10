@@ -3,7 +3,7 @@
 /**
  * ign_spaces_break_tab - function to ignore spaces, break line and tab to use
  * in the main function.
- * @str: string to search for spaces and break line
+ * @input: string to search for spaces and break line
  * Return: 1 if there is a space and a break line or 0 if there isnt
  **/
 
@@ -87,7 +87,7 @@ int _isletter(int c)
 
 /**
  * convert_tab_space - function to convert tabs into spaces
- * @str: string to convert in case it has tabs ('\t')
+ * @input: string to convert in case it has tabs ('\t')
  * Return: string converted or NULL.
  */
 
@@ -108,3 +108,4 @@ char *convert_tab_space(char *input)
 	}
 	return (NULL);
 }
+
