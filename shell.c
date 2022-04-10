@@ -38,7 +38,7 @@ int main(void)
 		path = _getpath();
 		if (_isletter(tokenized_input[0][0]) == 1)
 		{
-			tokenized_input[0] = _realpath(path, tokenized_input[0]);
+			tokenized_input[0] = _realpath(path, input);
 			child = fork();
 			if (child == -1)
 			{
@@ -77,7 +77,7 @@ int main(void)
 			else /* parent process - waits for the child process to finish */
 			{
 				wait(&status);
-				_free_path(2, path), _free(2, tokenized_input), _free(1, input);
+				_free_path(2, path), _free(2, tokenized_input);
 			}
 		}
 	}

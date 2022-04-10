@@ -44,7 +44,6 @@ int spaces(char *str)
 		i++;
 	}
 	space += 2;/*added space for a new word and the NULL element of array*/
-
 	return (space);
 }
 
