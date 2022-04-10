@@ -8,15 +8,14 @@
  */
 
 int ign_spaces_break_tab(char *input)
+
 {
 	int i = 0;
 
 	while (input[i] != '\0')
 	{
 		if (input[i] != 32 && input[i] != '\n' && input[i] != '\t')
-		/**
-		 * 32 number representation of space character in ASCII
-		 **/
+		/* 32 number representation of space character in ASCII */
 		{
 			return (1);
 		}
