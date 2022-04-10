@@ -13,7 +13,7 @@ char **_getpath()
 	{
 		if (_strcmp(environ[i], "PATH") == 0)
 		{
-			path = malloc(sizeof(char *) * (_strlen(environ[i])));
+			path = malloc(sizeof(char) * (_strlen(environ[i])));
 			if (path == NULL)
 			{
 				_free(1, path);
@@ -24,10 +24,17 @@ char **_getpath()
 		}
 	}
 	path += 5;
-
+	
 	size = _colons(path);
 	tokenized_path = _pathtok(path, size);
 	
+	for (i = 0; tokenized_path[i] != NULL; i++)
+        {
+                tokenized_path[i] = _strcat(tokenized_path[i], "/");
+        }
+
+	free(path);
+
 	return (tokenized_path);
 }
 
