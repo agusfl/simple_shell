@@ -59,7 +59,7 @@ void _execute_path(char **tokenized_input)
 		{
 			/*_free(2, tokenized_input);*/
 			perror(NULL); /*Null return default message*/
-			exit(0);
+			exit(-1);
 		}
 		if (child == 0) /*if it is 0 means that is the child process */
 		{
