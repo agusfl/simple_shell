@@ -36,11 +36,15 @@ int main(void)
 		if (_isletter(tokenized_input[0][0]) == 1)
 		{
 			_execute_command(path, tokenized_input);
-			free(input);
+			if (space == 2)
+				free(input);
 		}
 		else
+		{
 			_execute_path(tokenized_input);
-
+			if (space == 2)
+				free(input);
+		}
 		_free(tokenized_input), _free_path(path);
 	}
 	free(input);
