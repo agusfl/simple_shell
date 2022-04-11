@@ -66,7 +66,7 @@ char **_pathtok(char *str, int size)
 		if (tokenized_path == NULL)
 		{
 			_free(tokenized_path);
-			return(NULL);
+			return (NULL);
 		}
 		token = strtok(NULL, separator);
 		i++;
