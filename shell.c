@@ -10,9 +10,9 @@ int main(void)
 	char *input = NULL, *envv = "env", **path = NULL, **tokenized_input = NULL;
 	int space = 0;
 
+	signal(SIGINT, _ctrl_c);
 	while (1)
 	{
-		signal(SIGINT, _ctrl_c);
 		if (isatty(STDIN_FILENO) == 1)
 			write(1, "$ ", 2);
 		input = _getline();
@@ -31,11 +31,7 @@ int main(void)
 		}
 		tokenized_input = _strtok(input, space);
 		if (tokenized_input == NULL)
-		{
-			free(input);
 			exit(0);
-		}
-
 		path = _getpath();
 		if (_isletter(tokenized_input[0][0]) == 1)
 		{
@@ -43,11 +39,7 @@ int main(void)
 			free(input);
 		}
 		else
-		{
 			_execute_path(tokenized_input);
-			free(input);
-		}
-
 		_free(tokenized_input), _free_path(path);
 	}
 	free(input);

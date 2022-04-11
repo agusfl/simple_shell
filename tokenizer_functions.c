@@ -24,7 +24,7 @@ char **_strtok(char *str, int size)
 		token_array[i] = token;
 		if (_strcmp(token, exitt) == 0)/*If input is "exit" free memoryandExitShell*/
 		{
-			_free(token_array);
+			_free(token_array), free(str);
 			return (NULL);
 		}
 		if (token_array == NULL)
