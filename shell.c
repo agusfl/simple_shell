@@ -18,6 +18,7 @@ int main(void)
 		input = _getline();
 		space = spaces(input);
 		input = convert_tab_space(input);
+		printf("AAAAAAAAAAAAAAAAAAA%d\n", space);
 		if (ign_spaces_break_tab(input) != 1)
 		{
 			free(input);
