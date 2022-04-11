@@ -18,7 +18,7 @@ char **_getpath()
 			if (path == NULL)
 			{
 				free(path);
-				exit(-1);
+				exit(0);
 			}
 			_strcpy(path, environ[i]);
 			break;
@@ -52,7 +52,7 @@ char *_getline(void)
 	if (buffer == NULL)
 	{
 		free(buffer);
-		exit(4);
+		exit(0);
 	}
 	if (getline(&buffer, &bufsize, stdin) == -1)
 	{
@@ -60,12 +60,12 @@ char *_getline(void)
 		{
 			write(1, "\n", 1);
 			free(buffer);
-			exit(4);
+			exit(0);
 		}
 		else /*if not interactive mode dont make the break line*/
 		{
 			free(buffer);
-			exit(4);
+			exit(0);
 		}
 	}
 
