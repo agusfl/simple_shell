@@ -48,12 +48,6 @@ char *_getline(void)
 	char *buffer = NULL;
 	size_t bufsize = 0; /* if we set the value on 0 there are leaks */
 
-	/*buffer = malloc(bufsize * sizeof(char));*/
-	/*if (buffer == NULL)
-	{
-		free(buffer);
-		exit(0);
-	}*/
 	if (getline(&buffer, &bufsize, stdin) == -1)
 	{
 		if (isatty(STDIN_FILENO) == 1)/*if it is interactive mode make a break line*/
