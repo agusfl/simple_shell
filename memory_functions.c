@@ -75,22 +75,12 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 
 void _free_path(int n, ...)
 {
-	char *ptr;
 	char **dptr;
 	va_list valist;
 	int i;
 
 	va_start(valist, n);
 
-	if (n == 1)
-	{
-		ptr = va_arg(valist, char *);
-		if (ptr == NULL)
-		{
-			return;
-		}
-		free(ptr);
-	}
 	if (n == 2)
 	{
 		dptr = va_arg(valist, char **);
