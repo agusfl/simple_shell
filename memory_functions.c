@@ -2,7 +2,7 @@
 
 /**
  * _free - function to free 1 pointer or a double pointer
- * @toknized: indicates if it is a 1 pointer to be freed or a double pointer
+ * @tokenized: indicates if it is a 1 pointer to be freed or a double pointer
  **/
 
 void _free(char **tokenized)
