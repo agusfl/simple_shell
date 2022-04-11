@@ -42,9 +42,9 @@ int main(void)
 		else
 		{
 			_execute_path(tokenized_input);
-			_free(2, tokenized_input), _free(1, input);
+		/*	_free(2, tokenized_input), _free(1, input);*/
 		}
 	}
-	_free_path(2, path), _free(2, tokenized_input), _free(1, input);
+/*	_free_path(2, path), _free(2, tokenized_input), _free(1, input);*/
 	return (0);
 }
