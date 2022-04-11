@@ -22,7 +22,6 @@ void _free(char **tokenized)
 			break;
 		free(dptr[i]);
 	}
-
 	free(dptr);
 }
 
