@@ -36,7 +36,7 @@ void _execute_command(char **path, char **tokenized_input)
 		}
 	}
 	else
-		perror(tokenized_input[0]);
+		perror(NULL);
 }
 
 /**
@@ -73,5 +73,5 @@ void _execute_path(char **tokenized_input)
 		}
 	}
 	else
-		perror(tokneized_input[0]);
+		perror(NULL);
 }
