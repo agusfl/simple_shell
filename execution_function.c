@@ -27,6 +27,7 @@ void _execute_command(char **path, char **tokenized_input)
 			if (execve(tokenized_input[0], tokenized_input, environ) == -1)
 			{
 				perror(NULL); /*Null return default message*/
+
 				return;
 			}
 		}
