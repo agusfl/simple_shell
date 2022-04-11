@@ -34,7 +34,7 @@ int main(void)
 		if (_isletter(tokenized_input[0][0]) == 1)
 		{
 			_execute_command(path, tokenized_input);
-			if (space == 2)
+			if (space == 2)/*this means you send only a command without arguments*/
 				free(input);
 		}
 		else
