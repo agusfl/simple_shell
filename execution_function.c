@@ -30,7 +30,7 @@ void _execute_command(char **path, char **tokenized_input)
         }
     }
     else
-        printf("AAAAAAAAAAAAAAAAAAAA");
+        perror(NULL);
 }
 
 void _execute_path(char **tokenized_input)
@@ -63,5 +63,5 @@ void _execute_path(char **tokenized_input)
         }
     }
     else
-        printf("BBBBBBBBBB");
+        perror(NULL);
 }
