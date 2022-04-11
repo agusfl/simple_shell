@@ -1,7 +1,7 @@
 # Simple Shell project for Holberton
 
 This is a simple implementation of a **shell** for a linux system. We tried to emulate the behavior
-of the ``sh`` language.
+of the ``sh`` language..
 
 # Synopsis
 
