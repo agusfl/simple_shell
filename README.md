@@ -1,7 +1,7 @@
 # Simple Shell project for Holberton
 
 This is a simple implementation of a **shell** for a linux system. We tried to emulate the behavior
-of the ``sh`` language. 
+of the ``sh`` language.
 
 # Synopsis
 
@@ -19,18 +19,18 @@ current working directory as well as **/usr/bin/ls** (full path).
 We also created some builtins such as: **env** and **exit**.
 To exit the shell you can use the **exit** builtin or hit ctrl + d on your keyboard.
 
-## Environment 
+## Environment
 * Language: C
 * Operating System: Ubuntu 20.04 LTS
 * Style guidelines: [Betty style](https://github.com/holbertonschool/Betty/wiki)
-* Compiler: gcc 
+* Compiler: gcc
  > **Note:** The code will be compiled using the options: -Wall -Werror -Wextra -pedantic -std=gnu89
 
 ## Description of each file:
 
 | Files          |Desription
 |:----------------|:-------------------------------:|
-|``main.h`` | Hold prototypes of functions, libraries, and headers used.                   
+|``main.h`` | Hold prototypes of functions, libraries, and headers used.
 |``shell.c`` | Main function to execute our shell implementation.
 |``getters_function.c`` | Hold functions to get the path from the environment, get a string (getline) from the user, print environment (**env** builtin), and function to return the full path of a command.
 |``memory_functions.c`` | Function to free a pointer, double pointer, and our own calloc function to allocate memory for an array.
@@ -52,7 +52,7 @@ To exit the shell you can use the **exit** builtin or hit ctrl + d on your keybo
 
 In order for our shell to be used in **both** ``interactive`` or ``non interactive`` mode the first thing to do is
 to clone this repository.
-Then you have to compile the code in the following way: 
+Then you have to compile the code in the following way:
 
 ```gcc -Wall -Werror -Wextra -pedantic -std=gnu89 .c -o hsh```
 
