@@ -17,7 +17,7 @@ char **_getpath()
 			path = malloc(sizeof(char *) * (_strlen(environ[i])));
 			if (path == NULL)
 			{
-				_free(1, path);
+				free(path);
 				exit(-1);
 			}
 			_strcpy(path, environ[i]);
@@ -51,7 +51,7 @@ char *_getline(void)
 	buffer = malloc(bufsize * sizeof(char));
 	if (buffer == NULL)
 	{
-		_free(1, buffer);
+		free(buffer);
 		exit(4);
 	}
 	if (getline(&buffer, &bufsize, stdin) == -1)
@@ -59,12 +59,12 @@ char *_getline(void)
 		if (isatty(STDIN_FILENO) == 1)/*if it is interactive mode make a break line*/
 		{
 			write(1, "\n", 1);
-			_free(1, buffer);
+			free(buffer);
 			exit(4);
 		}
 		else /*if not interactive mode dont make the break line*/
 		{
-			_free(1, buffer);
+			free(buffer);
 			exit(4);
 		}
 	}

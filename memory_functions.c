@@ -2,42 +2,25 @@
 
 /**
  * _free - function to free 1 pointer or a double pointer
- * @n: indicates if it is a 1 pointer to be freed or a double pointer
+ * @toknized: indicates if it is a 1 pointer to be freed or a double pointer
  **/
 
-void _free(int n, ...)
+void _free(char **tokenized)
 {
-	char *ptr;
-	char **dptr;
-	va_list valist;
-	int i;
+	char **dptr = NULL;
+	int i = 0;
 
-	va_start(valist, n);
-
-	if (n == 1)
+	dptr = tokenized;
+	if (dptr == NULL)
 	{
-		ptr = va_arg(valist, char *);
-		if (ptr == NULL)
-		{
-			return;
-		}
-		free(ptr);
+		return;
 	}
-	if (n == 2)
-	{
-		dptr = va_arg(valist, char **);
-		if (dptr == NULL)
-		{
-			return;
-		}
 
-		for (i = 0; dptr[i + 1] != NULL; i++)
-		{
-			free(dptr[i]);
-		}
-		free(dptr);
+	for (i = 0; dptr[i + 1] != NULL; i++)
+	{
+		free(dptr[i]);
 	}
-	va_end(valist);
+	free(dptr);
 }
 
 /**
@@ -70,30 +53,23 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 
 /**
  * _free_path - function to free 1 pointer or a double pointer
- * @n: indicates if it is a 1 pointer to be freed or a double pointer
+ * @path: indicates if it is a 1 pointer to be freed or a double pointer
  **/
 
-void _free_path(int n, ...)
+void _free_path(char **path)
 {
-	char **dptr;
-	va_list valist;
-	int i;
+	char **dptr = NULL;
+	int i = 0;
 
-	va_start(valist, n);
-
-	if (n == 2)
+	dptr = path;
+	if (dptr == NULL)
 	{
-		dptr = va_arg(valist, char **);
-		if (dptr == NULL)
-		{
-			return;
-		}
-
-		for (i = 0; dptr[i] != NULL; i++)
-		{
-			free(dptr[i]);
-		}
-		free(dptr);
+		return;
 	}
-	va_end(valist);
+
+	for (i = 0; dptr[i] != NULL; i++)
+	{
+		free(dptr[i]);
+	}
+	free(dptr);
 }

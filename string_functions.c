@@ -22,7 +22,7 @@ char *_strcat(char *dest, char *src)
 
 	if (new_string == NULL)
 	{
-		_free(1, new_string);
+		free(new_string);
 		return (NULL);
 	}
 
@@ -133,7 +133,7 @@ char *_strdup(char *str)
 
 	if (str_copy == NULL)
 	{
-		_free(1, str_copy);
+		free(str_copy);
 		return (NULL);
 	}
 

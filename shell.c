@@ -37,14 +37,14 @@ int main(void)
 		if (_isletter(tokenized_input[0][0]) == 1)
 		{
 			_execute_command(path, tokenized_input);
-			/*_free(2, tokenized_input), _free(1, input);*/
+			_free(tokenized_input), _free_path(path), free(input);
 		}
 		else
 		{
 			_execute_path(tokenized_input);
-		/*	_free(2, tokenized_input), _free(1, input);*/
+			_free(tokenized_input), _free_path(path), free(input);
 		}
 	}
-/*	_free_path(2, path), _free(2, tokenized_input), _free(1, input);*/
+	free(input);
 	return (0);
 }

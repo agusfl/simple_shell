@@ -24,12 +24,12 @@ char **_strtok(char *str, int size)
 		token_array[i] = token;
 		if (_strcmp(token, exitt) == 0)/*If input is "exit" free memoryandExitShell*/
 		{
-			_free(1, str), _free(2, token_array);
+			free(str), _free(token_array);
 			return (NULL);
 		}
 		if (token_array == NULL)
 		{
-			_free(2, token_array), _free(1, str);
+			_free(token_array), free(str);
 			return (NULL);
 		}
 		token = strtok(NULL, separator);
@@ -65,7 +65,7 @@ char **_pathtok(char *str, int size)
 
 		if (tokenized_path == NULL)
 		{
-			_free(1, tokenized_path);
+			_free(tokenized_path);
 			return (NULL);
 		}
 		token = strtok(NULL, separator);
