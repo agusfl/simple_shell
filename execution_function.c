@@ -73,5 +73,5 @@ void _execute_path(char **tokenized_input)
 		}
 	}
 	else
-		perror(NULL);
+		perror(tokneized_input[0]);
 }
