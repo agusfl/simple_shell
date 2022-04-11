@@ -16,7 +16,7 @@ void _free(char **tokenized)
 		return;
 	}
 
-	for (i = 0; dptr[i] != NULL; i++)
+	for (i = 0; dptr[i + 1] != NULL; i++)
 	{
 		free(dptr[i]);
 	}
