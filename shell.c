@@ -15,9 +15,7 @@ int main(void)
 	{
 		if (isatty(STDIN_FILENO) == 1)
 			write(1, "$ ", 2);
-		input = _getline();
-		space = spaces(input);
-		input = convert_tab_space(input);
+		input = _getline(), space = spaces(input), input = convert_tab_space(input);
 		if (ign_spaces_break_tab(input) != 1)
 		{
 			free(input);
