@@ -1,5 +1,12 @@
 #include "main.h"
 
+/**
+ * _execute_command - Function to execute commands
+ * @path: Tokenized path
+ * @tokenized_input: Tokenized Input
+ * Return: Void
+ **/
+
 void _execute_command(char **path, char **tokenized_input)
 {
 	pid_t child;
@@ -32,6 +39,12 @@ void _execute_command(char **path, char **tokenized_input)
 	else
 		perror(NULL);
 }
+
+/**
+ * _execute_path - Function to execute commands
+ * @tokenized_input: Tokenized Input
+ * Return: Void
+ **/
 
 void _execute_path(char **tokenized_input)
 {
