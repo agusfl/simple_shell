@@ -31,9 +31,8 @@ int main(void)
 		}
 		tokenized_input = _strtok(input, space);
 		if (tokenized_input == NULL)
-		{
 			exit(1);
-		}
+
 		path = _getpath();
 		if (_isletter(tokenized_input[0][0]) == 1)
 		{
