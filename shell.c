@@ -8,7 +8,7 @@
 int main(void)
 {
 	char *input = NULL, *envv = "env", **path = NULL, **tokenized_input = NULL;
-	int space = 0;
+	int space = 0, status = 0;
 
 	signal(SIGINT, _ctrl_c);
 	while (1)
@@ -46,5 +46,5 @@ int main(void)
 		_free(tokenized_input), _free_path(path);
 	}
 	free(input);
-	return (0);
+	return (WEXITSTATUS(status));
 }
