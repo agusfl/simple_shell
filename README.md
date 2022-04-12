@@ -69,9 +69,6 @@ Run the following command:
 ```echo "ls -l" | ./hsh```
 This will list all the files and directories in your current workinf directory in a long format.
 
-## Flowchart
-
-
 ## Authors
 
 * [Agustin Flom](https://github.com/agusfl)
